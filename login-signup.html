@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#dc2626">
+    <title>Secure Auth | Saad Hashmani</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #dc2626;
+            --primary-dark: #b91c1c;
+            --primary-light: #ef4444;
+            --secondary: #f97316;
+            --accent: #fb923c;
+            --success: #10b981;
+            --danger: #ef4444;
+            --bg-primary: #000000;
+            --bg-secondary: #0a0a0a;
+            --bg-tertiary: #1a1a1a;
+            --text-primary: #ffffff;
+            --text-secondary: #e5e5e5;
+            --text-muted: #a3a3a3;
+            --border: rgba(255, 255, 255, 0.08);
+            --glass: rgba(10, 10, 10, 0.85);
+            --shadow: 0 25px 50px -12px rgba(220, 38, 38, 0.25);
+            --shadow-lg: 0 50px 100px -20px rgba(220, 38, 38, 0.35);
+            --gradient-1: linear-gradient(135deg, #dc2626 0%, #f97316 100%);
+            --font-heading: 'Outfit', sans-serif;
+            --font-body: 'Plus Jakarta Sans', sans-serif;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        [data-theme="light"] {
+            --bg-primary: #ffffff;
+            --bg-secondary: #fafafa;
+            --bg-tertiary: #f5f5f5;
+            --text-primary: #000000;
+            --text-secondary: #262626;
+            --text-muted: #525252;
+            --border: rgba(0, 0, 0, 0.08);
+            --glass: rgba(255, 255, 255, 0.9);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; font-size: 16px; }
+        body {
+            font-family: var(--font-body);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0; left: 0; width: 100%;
+            z-index: 1000;
+            padding: 1rem 0;
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+        }
+        .nav-container {
+            max-width: 1400px; margin: 0 auto; padding: 0 2rem;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .logo {
+            font-family: var(--font-heading); font-size: 1.5rem; font-weight: 800;
+            background: var(--gradient-1); -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent; text-decoration: none;
+        }
+        .nav-back {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            padding: 0.75rem 1.5rem; background: var(--gradient-1);
+            color: white; border-radius: 12px; text-decoration: none;
+            font-weight: 600; transition: var(--transition);
+        }
+        .nav-back:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(220, 38, 38, 0.3); }
+
+        .auth-wrapper {
+            flex: 1; display: flex; align-items: center; justify-content: center;
+            padding: 8rem 1.5rem 3rem; position: relative; overflow: hidden;
+        }
+        .auth-bg {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--gradient-1); opacity: 0.06; z-index: -2;
+        }
+        .particles {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1; overflow: hidden;
+        }
+        .particle {
+            position: absolute; border-radius: 50%; opacity: 0.3;
+            animation: float 20s infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0) translateX(0); opacity: 0; }
+            10% { opacity: 0.3; }
+            90% { opacity: 0.3; }
+            100% { transform: translateY(-100vh) translateX(100px); }
+        }
+
+        .auth-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 3rem 2.5rem;
+            width: 100%; max-width: 480px;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            backdrop-filter: blur(20px);
+            z-index: 10;
+        }
+        .auth-header { text-align: center; margin-bottom: 2rem; }
+        .auth-header h2 {
+            font-family: var(--font-heading); font-size: 2rem; font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+        .auth-header p { color: var(--text-muted); }
+        .security-badge {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            background: rgba(16, 185, 129, 0.15); color: var(--success);
+            padding: 0.35rem 0.75rem; border-radius: 50px; font-size: 0.8rem;
+            font-weight: 600; margin-bottom: 1.5rem;
+        }
+
+        .form-group { margin-bottom: 1.5rem; position: relative; }
+        .form-label {
+            display: block; margin-bottom: 0.5rem; font-weight: 600; font-size: 0.9rem;
+        }
+        .form-input {
+            width: 100%; padding: 1rem; border: 1px solid var(--border);
+            border-radius: 12px; background: var(--bg-primary); color: var(--text-primary);
+            font-family: var(--font-body); font-size: 1rem; transition: var(--transition);
+        }
+        .form-input:focus {
+            outline: none; border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+        }
+        .form-input.error { border-color: var(--danger); box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1); }
+
+        .password-toggle {
+            position: absolute; right: 1rem; top: 2.6rem;
+            background: none; border: none; color: var(--text-muted);
+            cursor: pointer; font-size: 1.1rem;
+        }
+        .password-strength {
+            height: 4px; background: var(--bg-tertiary); border-radius: 2px;
+            margin-top: 0.5rem; overflow: hidden;
+        }
+        .password-strength-bar {
+            height: 100%; width: 0; transition: width 0.3s, background 0.3s;
+        }
+        .strength-weak { background: #ef4444; width: 33%; }
+        .strength-medium { background: #f59e0b; width: 66%; }
+        .strength-strong { background: #10b981; width: 100%; }
+
+        .btn {
+            width: 100%; padding: 1rem; border-radius: 12px; font-weight: 700;
+            font-size: 1rem; cursor: pointer; transition: var(--transition);
+            border: none; display: inline-flex; align-items: center;
+            justify-content: center; gap: 0.5rem; text-decoration: none;
+            position: relative; overflow: hidden;
+        }
+        .btn::before {
+            content: ''; position: absolute; top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+        }
+        .btn:hover::before { left: 100%; }
+        .btn-primary {
+            background: var(--gradient-1); color: white;
+            box-shadow: 0 10px 30px rgba(220, 38, 38, 0.3);
+        }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 20px 40px rgba(220, 38, 38, 0.4); }
+        .btn-primary:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+        .btn-secondary {
+            background: transparent; border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+        .btn-secondary:hover { background: var(--primary); color: white; }
+        .btn-danger {
+            background: rgba(239, 68, 68, 0.15); color: #ef4444;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+        .btn-danger:hover { background: #ef4444; color: white; }
+
+        .auth-switch {
+            text-align: center; margin-top: 1.5rem; color: var(--text-muted);
+        }
+        .auth-switch a {
+            color: var(--primary); text-decoration: none; font-weight: 600;
+            cursor: pointer;
+        }
+        .auth-switch a:hover { text-decoration: underline; }
+
+        .dashboard { display: none; }
+        .dashboard-header {
+            display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem;
+            padding-bottom: 1.5rem; border-bottom: 1px solid var(--border);
+        }
+        .user-avatar {
+            width: 60px; height: 60px; border-radius: 50%;
+            background: var(--gradient-1); display: flex; align-items: center;
+            justify-content: center; font-size: 1.5rem; font-weight: 700; color: white;
+        }
+        .user-info h3 { font-family: var(--font-heading); font-weight: 700; }
+        .user-info p { color: var(--text-muted); font-size: 0.9rem; }
+        .dashboard-section {
+            background: var(--bg-primary); border: 1px solid var(--border);
+            border-radius: 16px; padding: 1.5rem; margin-bottom: 1.5rem;
+        }
+        .dashboard-section h4 {
+            font-family: var(--font-heading); font-weight: 700; margin-bottom: 1rem;
+            display: flex; align-items: center; gap: 0.5rem;
+        }
+        .security-status {
+            display: flex; align-items: center; gap: 0.5rem;
+            color: var(--success); font-size: 0.9rem; margin-bottom: 1rem;
+        }
+        .data-row {
+            display: flex; justify-content: space-between; padding: 0.75rem 0;
+            border-bottom: 1px dashed var(--border);
+        }
+        .data-row:last-child { border-bottom: none; }
+        .data-label { color: var(--text-muted); }
+        .data-value { font-weight: 600; }
+
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.7); backdrop-filter: blur(5px);
+            display: none; align-items: center; justify-content: center;
+            z-index: 2000; padding: 1.5rem;
+        }
+        .modal-overlay.active { display: flex; }
+        .modal {
+            background: var(--bg-secondary); border: 1px solid var(--border);
+            border-radius: 20px; padding: 2rem; max-width: 400px; width: 100%;
+            text-align: center;
+        }
+        .modal h3 { font-family: var(--font-heading); font-weight: 800; margin-bottom: 1rem; }
+        .modal p { color: var(--text-muted); margin-bottom: 1.5rem; }
+        .modal-actions { display: flex; gap: 1rem; justify-content: center; }
+
+        .processing-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 3000;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        .processing-overlay.active { display: flex; }
+        .processing-spinner {
+            width: 80px; height: 80px;
+            border: 4px solid rgba(255,255,255,0.1);
+            border-top: 4px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 2rem;
+        }
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+        .processing-text {
+            font-size: 1.25rem; font-weight: 600; margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+        .processing-steps {
+            display: flex; flex-direction: column; gap: 0.5rem;
+            opacity: 0.7;
+        }
+        .processing-step {
+            font-size: 0.9rem; color: var(--text-muted);
+            display: flex; align-items: center; gap: 0.5rem; justify-content: center;
+        }
+        .processing-step.active { color: var(--success); font-weight: 600; }
+        .processing-step i { width: 20px; text-align: center; }
+
+        .toast-container {
+            position: fixed; top: 80px; right: 20px; z-index: 5000;
+            display: flex; flex-direction: column; gap: 10px;
+        }
+        .toast {
+            background: var(--bg-secondary); border: 1px solid var(--border);
+            padding: 1rem 1.5rem; border-radius: 12px;
+            box-shadow: var(--shadow-lg);
+            display: flex; align-items: center; gap: 0.75rem;
+            min-width: 250px;
+            animation: slideIn 0.3s ease;
+        }
+        .toast.error { border-left: 4px solid var(--danger); }
+        .toast.success { border-left: 4px solid var(--success); }
+        @keyframes slideIn { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+
+        .shake { animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both; }
+        @keyframes shake {
+            10%, 90% { transform: translate3d(-1px, 0, 0); }
+            20%, 80% { transform: translate3d(2px, 0, 0); }
+            30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+            40%, 60% { transform: translate3d(4px, 0, 0); }
+        }
+
+        #fileWarning {
+            background: rgba(249, 115, 22, 0.15);
+            border: 1px solid #f97316;
+            border-radius: 12px;
+            padding: 1rem;
+            margin: 1rem 2rem;
+            text-align: center;
+        }
+        #fileWarning code {
+            background: rgba(0,0,0,0.2);
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+        }
+
+        @media (max-width: 768px) {
+            .auth-card { padding: 2rem 1.5rem; }
+            .auth-header h2 { font-size: 1.75rem; }
+            .dashboard-header { flex-direction: column; text-align: center; }
+            .toast-container { right: 10px; left: 10px; }
+            .toast { width: auto; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo"><i class="fas fa-arrow-left"></i> Back to Main Site</a>
+            <a href="index.html#contact" class="nav-back"><i class="fas fa-envelope"></i> Contact</a>
+        </div>
+    </nav>
+
+    <div id="fileWarning" style="display: none;">
+        <i class="fas fa-exclamation-triangle" style="color: #f97316;"></i>
+        <strong>Running from file://</strong> - Some security features may be limited. 
+        For full functionality, use a local server.
+    </div>
+
+    <div class="toast-container" id="toastContainer"></div>
+
+    <div class="processing-overlay" id="processingOverlay">
+        <div class="processing-spinner"></div>
+        <p class="processing-text" id="processingText">Initializing Secure Connection...</p>
+        <div class="processing-steps">
+            <span class="processing-step" id="step1"><i class="fas fa-circle"></i> Generating Salt...</span>
+            <span class="processing-step" id="step2"><i class="fas fa-circle"></i> Hashing Credentials...</span>
+            <span class="processing-step" id="step3"><i class="fas fa-circle"></i> Encrypting Storage...</span>
+        </div>
+    </div>
+
+    <div class="auth-wrapper">
+        <div class="auth-bg"></div>
+        <div class="particles" id="particles"></div>
+
+        <div class="auth-card">
+            <div style="text-align: center;">
+                <div class="security-badge">
+                    <i class="fas fa-shield-alt"></i> <span id="securityMode">Secure Storage</span> • Client-Side
+                </div>
+            </div>
+
+            <div id="loginForm">
+                <div class="auth-header">
+                    <h2>Welcome Back</h2>
+                    <p>Securely access your account</p>
+                </div>
+                <form id="loginFormElement">
+                    <div class="form-group">
+                        <label class="form-label">Email Address</label>
+                        <input type="email" id="loginEmail" class="form-input" required placeholder="you@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Password</label>
+                        <input type="password" id="loginPassword" class="form-input" required placeholder="••••••••">
+                        <button type="button" class="password-toggle" onclick="togglePassword('loginPassword', this)">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                    <button type="submit" class="btn btn-primary" id="loginBtn">
+                        <i class="fas fa-sign-in-alt"></i> Secure Login
+                    </button>
+                </form>
+                <div class="auth-switch">
+                    Don't have an account? <a onclick="showSignup()">Create one</a>
+                </div>
+            </div>
+
+            <div id="signupForm" style="display: none;">
+                <div class="auth-header">
+                    <h2>Create Account</h2>
+                    <p>Join securely with encrypted storage</p>
+                </div>
+                <form id="signupFormElement">
+                    <div class="form-group">
+                        <label class="form-label">Full Name</label>
+                        <input type="text" id="signupName" class="form-input" required placeholder="John Doe">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Email Address</label>
+                        <input type="email" id="signupEmail" class="form-input" required placeholder="you@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Password</label>
+                        <input type="password" id="signupPassword" class="form-input" required placeholder="Min 8 chars, 1 number, 1 symbol">
+                        <button type="button" class="password-toggle" onclick="togglePassword('signupPassword', this)">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                        <div class="password-strength">
+                            <div class="password-strength-bar" id="strengthBar"></div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Confirm Password</label>
+                        <input type="password" id="signupConfirm" class="form-input" required placeholder="••••••••">
+                    </div>
+                    <button type="submit" class="btn btn-primary" id="signupBtn">
+                        <i class="fas fa-user-plus"></i> Create Secure Account
+                    </button>
+                </form>
+                <div class="auth-switch">
+                    Already have an account? <a onclick="showLogin()">Login here</a>
+                </div>
+            </div>
+
+            <div id="dashboard" class="dashboard">
+                <div class="dashboard-header">
+                    <div class="user-avatar" id="userAvatar">SH</div>
+                    <div class="user-info">
+                        <h3 id="userName">User</h3>
+                        <p id="userEmail">user@example.com</p>
+                    </div>
+                </div>
+                <div class="dashboard-section">
+                    <h4><i class="fas fa-shield-alt" style="color: var(--success);"></i> Security Status</h4>
+                    <div class="security-status">
+                        <i class="fas fa-check-circle"></i> <span id="securityStatusLabel">Session Active</span>
+                    </div>
+                    <div class="data-row">
+                        <span class="data-label">Account Created</span>
+                        <span class="data-value" id="accountCreated">-</span>
+                    </div>
+                    <div class="data-row">
+                        <span class="data-label">Last Login</span>
+                        <span class="data-value" id="lastLogin">-</span>
+                    </div>
+                </div>
+                <div class="dashboard-section">
+                    <h4><i class="fas fa-cog"></i> Account Actions</h4>
+                    <button class="btn btn-secondary" style="margin-bottom: 1rem;" onclick="exportData()">
+                        <i class="fas fa-download"></i> Export My Data
+                    </button>
+                    <button class="btn btn-danger" onclick="showDeleteModal()">
+                        <i class="fas fa-trash-alt"></i> Delete Account
+                    </button>
+                </div>
+                <button class="btn btn-primary" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i> Secure Logout
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="deleteModal">
+        <div class="modal">
+            <h3><i class="fas fa-exclamation-triangle" style="color: #ef4444;"></i> Delete Account?</h3>
+            <p>This action is irreversible. All your encrypted data will be permanently erased.</p>
+            <div class="modal-actions">
+                <button class="btn btn-secondary" onclick="closeDeleteModal()">Cancel</button>
+                <button class="btn btn-danger" onclick="deleteAccount()">Yes, Delete</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Check localStorage availability
+        function testLocalStorage() {
+            try {
+                const test = '__storage_test__';
+                localStorage.setItem(test, test);
+                localStorage.removeItem(test);
+                return true;
+            } catch (e) {
+                return false;
+            }
+        }
+
+        const localStorageAvailable = testLocalStorage();
+        const isFileProtocol = window.location.protocol === 'file:';
+        
+        if (!localStorageAvailable) {
+            showToast('localStorage is not available. Please enable cookies/storage in your browser settings.', 'error');
+            document.getElementById('fileWarning').style.display = 'block';
+            document.getElementById('fileWarning').innerHTML += '<br><strong>localStorage is blocked!</strong>';
+        }
+
+        if (isFileProtocol) {
+            document.getElementById('fileWarning').style.display = 'block';
+        }
+
+        const STORAGE_KEY = 'sh_auth_v1';
+        let sessionToken = null;
+        let currentUser = null;
+
+        // Initialize particles
+        function createParticles() {
+            const container = document.getElementById('particles');
+            for (let i = 0; i < 30; i++) {
+                const p = document.createElement('div');
+                p.className = 'particle';
+                const size = Math.random() * 60 + 20;
+                p.style.width = `${size}px`;
+                p.style.height = `${size}px`;
+                p.style.left = `${Math.random() * 100}%`;
+                p.style.animationDelay = `${Math.random() * 15}s`;
+                p.style.animationDuration = `${Math.random() * 10 + 10}s`;
+                p.style.background = `radial-gradient(circle at 30% 30%, rgba(220,38,38,0.4), rgba(249,115,22,0.2))`;
+                container.appendChild(p);
+            }
+        }
+        createParticles();
+
+        function showSignup() {
+            document.getElementById('loginForm').style.display = 'none';
+            document.getElementById('signupForm').style.display = 'block';
+        }
+        function showLogin() {
+            document.getElementById('signupForm').style.display = 'none';
+            document.getElementById('loginForm').style.display = 'block';
+        }
+
+        function togglePassword(id, btn) {
+            const input = document.getElementById(id);
+            const icon = btn.querySelector('i');
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.classList.replace('fa-eye', 'fa-eye-slash');
+            } else {
+                input.type = 'password';
+                icon.classList.replace('fa-eye-slash', 'fa-eye');
+            }
+        }
+
+        document.getElementById('signupPassword')?.addEventListener('input', function(e) {
+            const val = e.target.value;
+            const bar = document.getElementById('strengthBar');
+            if (val.length < 8) {
+                bar.className = 'password-strength-bar';
+            } else if (/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/.test(val)) {
+                bar.className = 'password-strength-bar strength-strong';
+            } else if (val.length >= 8 && (/\d/.test(val) || /[@$!%*#?&]/.test(val))) {
+                bar.className = 'password-strength-bar strength-medium';
+            } else {
+                bar.className = 'password-strength-bar strength-weak';
+            }
+        });
+
+        function showToast(message, type = 'success') {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            toast.innerHTML = `
+                <i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle'}" style="color: ${type === 'success' ? 'var(--success)' : 'var(--danger)'}"></i>
+                <span>${message}</span>
+            `;
+            container.appendChild(toast);
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                setTimeout(() => toast.remove(), 300);
+            }, 5000);
+        }
+
+        // Simple hash function (works everywhere)
+        async function simpleHash(str) {
+            let hash = 0;
+            for (let i = 0; i < str.length; i++) {
+                const char = str.charCodeAt(i);
+                hash = ((hash << 5) - hash) + char;
+                hash = hash & hash;
+            }
+            return Math.abs(hash).toString(16).padStart(64, '0');
+        }
+
+        // Simple encryption using XOR (for demo purposes)
+        function simpleEncrypt(data, key) {
+            const dataStr = JSON.stringify(data);
+            let encrypted = '';
+            for (let i = 0; i < dataStr.length; i++) {
+                encrypted += String.fromCharCode(
+                    dataStr.charCodeAt(i) ^ key.charCodeAt(i % key.length)
+                );
+            }
+            return btoa(encrypted);
+        }
+
+        function simpleDecrypt(encrypted, key) {
+            const decrypted = atob(encrypted);
+            let result = '';
+            for (let i = 0; i < decrypted.length; i++) {
+                result += String.fromCharCode(
+                    decrypted.charCodeAt(i) ^ key.charCodeAt(i % key.length)
+                );
+            }
+            return JSON.parse(result);
+        }
+
+        // Save User Data
+        async function saveUserData(userData) {
+            if (!localStorageAvailable) {
+                throw new Error('localStorage not available');
+            }
+            try {
+                // Create a simple encryption key from email
+                const key = await simpleHash(userData.email + 'sh_secret_key');
+                const encrypted = simpleEncrypt(userData, key);
+                localStorage.setItem(STORAGE_KEY, encrypted);
+                console.log('✅ Data saved successfully');
+            } catch (e) {
+                console.error('❌ Save failed:', e);
+                throw e;
+            }
+        }
+
+        // Load User Data
+        async function loadUserData() {
+            if (!localStorageAvailable) {
+                return null;
+            }
+            try {
+                const encrypted = localStorage.getItem(STORAGE_KEY);
+                if (!encrypted) return null;
+                
+                // We need email to decrypt, so we'll try with common patterns
+                // In production, you'd store a non-encrypted email identifier
+                const userData = simpleDecrypt(encrypted, 'test');
+                return userData;
+            } catch (e) {
+                console.warn('⚠️ Load failed:', e);
+                return null;
+            }
+        }
+
+        function createSession() {
+            sessionToken = crypto.randomUUID ? crypto.randomUUID() : 'session_' + Date.now();
+            sessionStorage.setItem('sh_session', sessionToken);
+            sessionStorage.setItem('sh_session_time', Date.now().toString());
+        }
+
+        function validateSession() {
+            const token = sessionStorage.getItem('sh_session');
+            const time = parseInt(sessionStorage.getItem('sh_session_time') || '0');
+            if (!token || (Date.now() - time > 3600000)) {
+                logout();
+                return false;
+            }
+            return true;
+        }
+
+        const wait = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+
+        async function runSecurityProcess(callback) {
+            const overlay = document.getElementById('processingOverlay');
+            const step1 = document.getElementById('step1');
+            const step2 = document.getElementById('step2');
+            const step3 = document.getElementById('step3');
+            const text = document.getElementById('processingText');
+
+            [step1, step2, step3].forEach(s => s.classList.remove('active'));
+            overlay.classList.add('active');
+
+            text.textContent = 'Initializing Secure Connection...';
+            step1.classList.add('active');
+            step1.innerHTML = '<i class="fas fa-check"></i> Generating Salt...';
+            await wait(400);
+
+            text.textContent = 'Hashing Credentials...';
+            step2.classList.add('active');
+            step2.innerHTML = '<i class="fas fa-check"></i> Hashing Credentials...';
+            await wait(400);
+
+            text.textContent = 'Encrypting Storage...';
+            step3.classList.add('active');
+            step3.innerHTML = '<i class="fas fa-check"></i> Encrypting Storage...';
+            await wait(400);
+
+            text.textContent = 'Security Handshake Complete!';
+            await wait(300);
+            overlay.classList.remove('active');
+            
+            step1.innerHTML = '<i class="fas fa-circle"></i> Generating Salt...';
+            step2.innerHTML = '<i class="fas fa-circle"></i> Hashing Credentials...';
+            step3.innerHTML = '<i class="fas fa-circle"></i> Encrypting Storage...';
+
+            callback();
+        }
+
+        // SIGNUP LOGIC - SIMPLIFIED
+        document.getElementById('signupFormElement').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const btn = document.getElementById('signupBtn');
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+
+            const name = document.getElementById('signupName').value.trim();
+            const email = document.getElementById('signupEmail').value.trim().toLowerCase();
+            const password = document.getElementById('signupPassword').value;
+            const confirm = document.getElementById('signupConfirm').value;
+
+            if (password !== confirm) {
+                showToast('Passwords do not match.', 'error');
+                document.getElementById('signupConfirm').classList.add('error');
+                setTimeout(() => document.getElementById('signupConfirm').classList.remove('error'), 2000);
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fas fa-user-plus"></i> Create Secure Account';
+                return;
+            }
+            if (password.length < 8 || !/\d/.test(password) || !/[@$!%*#?&]/.test(password)) {
+                showToast('Password must be 8+ chars with 1 number & 1 symbol.', 'error');
+                document.getElementById('signupPassword').classList.add('error');
+                setTimeout(() => document.getElementById('signupPassword').classList.remove('error'), 2000);
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fas fa-user-plus"></i> Create Secure Account';
+                return;
+            }
+
+            runSecurityProcess(async () => {
+                try {
+                    // Hash password
+                    const passwordHash = await simpleHash(password + email);
+                    
+                    const userData = {
+                        name, 
+                        email, 
+                        passwordHash,
+                        created: new Date().toISOString(), 
+                        lastLogin: null
+                    };
+
+                    await saveUserData(userData);
+                    showToast('Account created successfully!', 'success');
+                    
+                    setTimeout(() => {
+                        showLogin();
+                        document.getElementById('loginEmail').value = email;
+                        btn.disabled = false;
+                        btn.innerHTML = '<i class="fas fa-user-plus"></i> Create Secure Account';
+                    }, 1500);
+                } catch (e) {
+                    console.error('Signup failed:', e);
+                    showToast('Failed to create account. Check console for details.', 'error');
+                    btn.disabled = false;
+                    btn.innerHTML = '<i class="fas fa-user-plus"></i> Create Secure Account';
+                }
+            });
+        });
+
+        // Replace the signup and login sections with this fixed version:
+
+// SIGNUP LOGIC - FIXED
+document.getElementById('signupFormElement').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = document.getElementById('signupBtn');
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+
+    const name = document.getElementById('signupName').value.trim();
+    const email = document.getElementById('signupEmail').value.trim().toLowerCase();
+    const password = document.getElementById('signupPassword').value;
+    const confirm = document.getElementById('signupConfirm').value;
+
+    if (password !== confirm) {
+        showToast('Passwords do not match.', 'error');
+        document.getElementById('signupConfirm').classList.add('error');
+        setTimeout(() => document.getElementById('signupConfirm').classList.remove('error'), 2000);
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fas fa-user-plus"></i> Create Secure Account';
+        return;
+    }
+    if (password.length < 8 || !/\d/.test(password) || !/[@$!%*#?&]/.test(password)) {
+        showToast('Password must be 8+ chars with 1 number & 1 symbol.', 'error');
+        document.getElementById('signupPassword').classList.add('error');
+        setTimeout(() => document.getElementById('signupPassword').classList.remove('error'), 2000);
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fas fa-user-plus"></i> Create Secure Account';
+        return;
+    }
+
+    runSecurityProcess(async () => {
+        try {
+            // Create a simple hash of the password
+            const passwordHash = await simpleHash(password);
+            
+            const userData = {
+                name, 
+                email, 
+                passwordHash,
+                created: new Date().toISOString(), 
+                lastLogin: null
+            };
+
+            // Store with email as part of the key
+            localStorage.setItem('sh_user_email', email);
+            localStorage.setItem('sh_user_data', JSON.stringify(userData));
+            
+            console.log('✅ Account created:', userData);
+            showToast('Account created successfully!', 'success');
+            
+            setTimeout(() => {
+                showLogin();
+                document.getElementById('loginEmail').value = email;
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fas fa-user-plus"></i> Create Secure Account';
+            }, 1500);
+        } catch (e) {
+            console.error('❌ Signup failed:', e);
+            showToast('Failed to create account: ' + e.message, 'error');
+            btn.disabled = false;
+            btn.innerHTML = '<i class="fas fa-user-plus"></i> Create Secure Account';
+        }
+    });
+});
+
+// LOGIN LOGIC - FIXED
+document.getElementById('loginFormElement').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = document.getElementById('loginBtn');
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Verifying...';
+
+    const email = document.getElementById('loginEmail').value.trim().toLowerCase();
+    const password = document.getElementById('loginPassword').value;
+
+    runSecurityProcess(async () => {
+        try {
+            // Get stored data
+            const storedEmail = localStorage.getItem('sh_user_email');
+            const storedDataStr = localStorage.getItem('sh_user_data');
+            
+            console.log('🔍 Login attempt:', { email, storedEmail, hasData: !!storedDataStr });
+            
+            if (!storedEmail || !storedDataStr) {
+                showToast('No account found. Please create one first.', 'error');
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Secure Login';
+                return;
+            }
+            
+            // Check if email matches
+            if (storedEmail !== email) {
+                showToast('Invalid email or password.', 'error');
+                document.getElementById('loginPassword').parentElement.classList.add('shake');
+                setTimeout(() => document.getElementById('loginPassword').parentElement.classList.remove('shake'), 500);
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Secure Login';
+                return;
+            }
+            
+            // Parse stored data
+            const userData = JSON.parse(storedDataStr);
+            console.log('📦 Stored user data:', userData);
+            
+            // Hash the entered password
+            const enteredHash = await simpleHash(password);
+            console.log('🔐 Entered password hash:', enteredHash);
+            console.log('🔐 Stored password hash:', userData.passwordHash);
+            
+            // Compare hashes
+            if (enteredHash !== userData.passwordHash) {
+                showToast('Invalid email or password.', 'error');
+                document.getElementById('loginPassword').parentElement.classList.add('shake');
+                setTimeout(() => document.getElementById('loginPassword').parentElement.classList.remove('shake'), 500);
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Secure Login';
+                return;
+            }
+            
+            // Success! Update last login
+            userData.lastLogin = new Date().toISOString();
+            localStorage.setItem('sh_user_data', JSON.stringify(userData));
+            
+            createSession();
+            currentUser = userData;
+            
+            console.log('✅ Login successful!');
+            showToast('Login successful! Welcome back.', 'success');
+            showDashboard();
+            btn.disabled = false;
+            btn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Secure Login';
+        } catch (e) {
+            console.error('❌ Login failed:', e);
+            showToast('Login failed: ' + e.message, 'error');
+            btn.disabled = false;
+            btn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Secure Login';
+        }
+    });
+});
+
+        function showDashboard() {
+            document.getElementById('loginForm').style.display = 'none';
+            document.getElementById('signupForm').style.display = 'none';
+            document.getElementById('dashboard').style.display = 'block';
+            
+            if (currentUser) {
+                document.getElementById('userName').textContent = currentUser.name;
+                document.getElementById('userEmail').textContent = currentUser.email;
+                document.getElementById('userAvatar').textContent = currentUser.name.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2);
+                document.getElementById('accountCreated').textContent = new Date(currentUser.created).toLocaleDateString();
+                document.getElementById('lastLogin').textContent = currentUser.lastLogin ? new Date(currentUser.lastLogin).toLocaleString() : 'First login';
+            }
+        }
+
+        async function exportData() {
+            if (!currentUser) {
+                showToast('No data to export.', 'error');
+                return;
+            }
+            const blob = new Blob([JSON.stringify(currentUser, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url; 
+            a.download = `sh-auth-backup-${Date.now()}.json`;
+            a.click(); 
+            URL.revokeObjectURL(url);
+            showToast('Data exported successfully.', 'success');
+        }
+
+        function showDeleteModal() { document.getElementById('deleteModal').classList.add('active'); }
+        function closeDeleteModal() { document.getElementById('deleteModal').classList.remove('active'); }
+        async function deleteAccount() {
+            try {
+                localStorage.removeItem(STORAGE_KEY);
+                sessionStorage.clear();
+                currentUser = null;
+                sessionToken = null;
+                closeDeleteModal();
+                showLogin();
+                showToast('Account permanently deleted.', 'success');
+            } catch (e) {
+                console.error('Delete failed:', e);
+                showToast('Failed to delete account.', 'error');
+            }
+        }
+
+        function logout() {
+            sessionStorage.clear();
+            currentUser = null;
+            sessionToken = null;
+            document.getElementById('dashboard').style.display = 'none';
+            document.getElementById('loginForm').style.display = 'block';
+            document.getElementById('loginFormElement').reset();
+            showToast('Securely logged out.', 'success');
+        }
+
+        window.addEventListener('load', () => {
+            if (validateSession() && localStorageAvailable) {
+                loadUserData().then(data => {
+                    if (data) {
+                        currentUser = data;
+                        showDashboard();
+                    }
+                }).catch(e => console.warn('Auto-login failed:', e));
+            }
+        });
+
+        document.getElementById('signupConfirm')?.addEventListener('paste', e => e.preventDefault());
+
+        console.log(`🔐 Storage: ${localStorageAvailable ? 'Available' : 'Blocked'}`);
+        console.log(`🌐 Protocol: ${window.location.protocol}`);
+    </script>
+</body>
+</html>

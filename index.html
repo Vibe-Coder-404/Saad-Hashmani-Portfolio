@@ -1,0 +1,2572 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="theme-color" content="#dc2626">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Saad Hashmani | Entrepreneur, Mentor & Founder</title>
+    <meta name="description" content="From poverty to multi-million dollar empire. Saad Hashmani's journey & free education at TheHUniversity.com & TradingPapa.com">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* ============================================
+           CSS VARIABLES - RED/ORANGE THEME
+        ============================================ */
+        :root {
+            --primary: #dc2626;
+            --primary-dark: #b91c1c;
+            --primary-light: #ef4444;
+            --secondary: #f97316;
+            --accent: #fb923c;
+            --success: #10b981;
+            --danger: #ef4444;
+            
+            --bg-primary: #000000;
+            --bg-secondary: #0a0a0a;
+            --bg-tertiary: #1a1a1a;
+            --text-primary: #ffffff;
+            --text-secondary: #e5e5e5;
+            --text-muted: #a3a3a3;
+            
+            --border: rgba(255, 255, 255, 0.08);
+            --glass: rgba(10, 10, 10, 0.85);
+            --shadow: 0 25px 50px -12px rgba(220, 38, 38, 0.25);
+            --shadow-lg: 0 50px 100px -20px rgba(220, 38, 38, 0.35);
+            
+            --gradient-1: linear-gradient(135deg, #dc2626 0%, #f97316 100%);
+            --gradient-2: linear-gradient(135deg, #ef4444 0%, #fb923c 100%);
+            --gradient-3: linear-gradient(135deg, #f97316 0%, #fbbf24 100%);
+            --gradient-hero: linear-gradient(135deg, #dc2626 0%, #f97316 50%, #ef4444 100%);
+            
+            --font-heading: 'Outfit', sans-serif;
+            --font-body: 'Plus Jakarta Sans', sans-serif;
+            
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-slow: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            
+            --safe-area-top: env(safe-area-inset-top);
+            --safe-area-bottom: env(safe-area-inset-bottom);
+            --safe-area-left: env(safe-area-inset-left);
+            --safe-area-right: env(safe-area-inset-right);
+        }
+
+        [data-theme="light"] {
+            --bg-primary: #ffffff;
+            --bg-secondary: #fafafa;
+            --bg-tertiary: #f5f5f5;
+            --text-primary: #000000;
+            --text-secondary: #262626;
+            --text-muted: #525252;
+            --border: rgba(0, 0, 0, 0.08);
+            --glass: rgba(255, 255, 255, 0.9);
+            --shadow: 0 25px 50px -12px rgba(220, 38, 38, 0.15);
+            --shadow-lg: 0 50px 100px -20px rgba(220, 38, 38, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 100px;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            transition: var(--transition);
+            padding-top: var(--safe-area-top);
+            padding-bottom: var(--safe-area-bottom);
+        }
+
+        /* Mobile Optimizations */
+        @media (max-width: 768px) {
+            html { font-size: 14px; }
+            body { -webkit-text-size-adjust: 100%; }
+            .btn { min-height: 48px; min-width: 48px; }
+            input, textarea, select { font-size: 16px !important; }
+        }
+
+        /* Preloader */
+        .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg-primary);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        .preloader.hidden { opacity: 0; pointer-events: none; }
+
+        .loader {
+            width: 60px;
+            height: 60px;
+            border: 4px solid var(--border);
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* Scroll Progress */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: var(--gradient-1);
+            z-index: 10000;
+            transition: width 0.1s;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: var(--transition);
+            padding-left: var(--safe-area-left);
+            padding-right: var(--safe-area-right);
+        }
+
+        .navbar.scrolled {
+            background: var(--glass);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border-bottom: 1px solid var(--border);
+            padding: 0.75rem 0;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: clamp(1.25rem, 4vw, 1.75rem);
+            font-weight: 800;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            position: relative;
+            transition: var(--transition);
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-1);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover { color: var(--text-primary); }
+        .nav-links a:hover::after { width: 100%; }
+
+        .nav-actions {
+            display: flex;
+            gap: 0.75rem;
+            align-items: center;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .btn:hover::before { left: 100%; }
+
+        .btn-primary {
+            background: var(--gradient-1);
+            color: white;
+            box-shadow: 0 10px 30px rgba(220, 38, 38, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 20px 40px rgba(220, 38, 38, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .btn-large { padding: 1rem 2.5rem; font-size: 1rem; }
+
+        .theme-toggle {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            color: var(--text-primary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            font-size: 1.1rem;
+        }
+
+        .theme-toggle:hover {
+            transform: rotate(180deg);
+            background: var(--primary);
+            color: white;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            z-index: 1001;
+        }
+
+        .mobile-menu-btn span {
+            width: 25px;
+            height: 3px;
+            background: var(--text-primary);
+            transition: var(--transition);
+            border-radius: 3px;
+        }
+
+        .mobile-menu-btn.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        .mobile-menu-btn.active span:nth-child(2) { opacity: 0; }
+        .mobile-menu-btn.active span:nth-child(3) { transform: rotate(-45deg) translate(7px, -6px); }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: var(--bg-primary);
+            z-index: 999;
+            padding: 100px 2rem 2rem;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .mobile-menu.active { display: flex; }
+
+        .mobile-menu a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 1.5rem;
+            font-weight: 700;
+            padding: 1rem;
+            border-bottom: 1px solid var(--border);
+            transition: var(--transition);
+        }
+
+        .mobile-menu a:hover {
+            color: var(--primary);
+            padding-left: 1.5rem;
+        }
+
+        /* ✅ ACCOUNT DROPDOWN STYLES */
+        .account-dropdown {
+            position: relative;
+        }
+
+        .account-btn {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--gradient-1);
+            border: 2px solid var(--border);
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .account-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(220, 38, 38, 0.3);
+            border-color: var(--primary);
+        }
+
+        .account-btn.login-btn {
+            width: auto;
+            padding: 0 1.5rem;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            gap: 0.5rem;
+        }
+
+        .account-dropdown-menu {
+            position: absolute;
+            top: calc(100% + 10px);
+            right: 0;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            min-width: 280px;
+            box-shadow: var(--shadow-lg);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            z-index: 1001;
+            overflow: hidden;
+        }
+
+        .account-dropdown-menu.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .account-dropdown-header {
+            background: var(--gradient-1);
+            padding: 1.5rem;
+            text-align: center;
+            color: white;
+        }
+
+        .account-dropdown-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0 auto 0.75rem;
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+
+        .account-dropdown-name {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .account-dropdown-email {
+            font-size: 0.85rem;
+            opacity: 0.9;
+        }
+
+        .account-dropdown-body {
+            padding: 1rem;
+        }
+
+        .account-dropdown-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition);
+            color: var(--text-secondary);
+            text-decoration: none;
+            margin-bottom: 0.5rem;
+        }
+
+        .account-dropdown-item:hover {
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+        }
+
+        .account-dropdown-item i {
+            width: 20px;
+            text-align: center;
+            color: var(--primary);
+        }
+
+        .account-dropdown-divider {
+            height: 1px;
+            background: var(--border);
+            margin: 0.75rem 0;
+        }
+
+        .account-dropdown-item.danger {
+            color: var(--danger);
+        }
+
+        .account-dropdown-item.danger i {
+            color: var(--danger);
+        }
+
+        .account-dropdown-item.danger:hover {
+            background: rgba(239, 68, 68, 0.1);
+        }
+
+        /* Mobile Account Section */
+        .mobile-account-section {
+            display: none;
+            padding: 1rem;
+            border-top: 1px solid var(--border);
+            margin-top: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .mobile-account-section {
+                display: block;
+            }
+            
+            .account-dropdown {
+                display: none;
+            }
+        }
+
+        /* Toast Notifications */
+        .main-toast {
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-left: 4px solid var(--success);
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            box-shadow: var(--shadow-lg);
+            z-index: 10000;
+            animation: slideIn 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        .main-toast.toast-error {
+            border-left-color: var(--danger);
+        }
+        
+        @keyframes slideIn { 
+            from { transform: translateX(100%); opacity: 0; } 
+            to { transform: translateX(0); opacity: 1; } 
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 8rem 1.5rem 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-hero);
+            opacity: 0.08;
+            z-index: -2;
+        }
+
+        /* Enhanced Particles System */
+        .particles-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0;
+            animation: particleFloat 15s infinite;
+        }
+
+        .particle.bubble {
+            background: radial-gradient(circle at 30% 30%, rgba(220, 38, 38, 0.4), rgba(249, 115, 22, 0.2));
+            box-shadow: 0 0 20px rgba(220, 38, 38, 0.3);
+        }
+
+        .particle.dust {
+            background: rgba(255, 255, 255, 0.5);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        }
+
+        .particle.sparkle {
+            background: radial-gradient(circle, #fff 0%, rgba(251, 146, 60, 0) 70%);
+            animation: sparkle 3s infinite;
+        }
+
+        @keyframes particleFloat {
+            0% {
+                transform: translateY(100vh) translateX(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% { opacity: 0.6; }
+            90% { opacity: 0.6; }
+            100% {
+                transform: translateY(-100vh) translateX(100px) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes sparkle {
+            0%, 100% { opacity: 0; transform: scale(0); }
+            50% { opacity: 1; transform: scale(1); }
+        }
+
+        .hero-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--glass);
+            border: 1px solid var(--border);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--primary-light);
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 0.8s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .hero-badge i { animation: pulse 2s infinite; }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .hero-title {
+            font-family: var(--font-heading);
+            font-size: clamp(2rem, 6vw, 4rem);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 1.25rem;
+            animation: fadeInUp 0.8s ease 0.1s both;
+        }
+
+        .hero-title .highlight {
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1rem, 2.5vw, 1.25rem);
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+            animation: fadeInUp 0.8s ease 0.2s both;
+        }
+
+        .hero-description {
+            font-size: clamp(0.95rem, 2vw, 1.1rem);
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            animation: fadeInUp 0.8s ease 0.3s both;
+            font-style: italic;
+            border-left: 3px solid var(--primary);
+            padding-left: 1rem;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.8s ease 0.4s both;
+        }
+
+        .hero-stats {
+            display: flex;
+            flex-direction: row;
+            gap: 2rem;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+            animation: fadeInUp 0.8s ease 0.5s both;
+        }
+
+        .hero-stat {
+            text-align: center;
+            min-width: 100px;
+        }
+
+        .hero-stat-number {
+            font-family: var(--font-heading);
+            font-size: clamp(1.75rem, 4vw, 2.5rem);
+            font-weight: 800;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: block;
+        }
+
+        .hero-stat-label {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .hero-image {
+            position: relative;
+            animation: fadeIn 1s ease 0.6s both;
+        }
+
+        .hero-image-wrapper {
+            position: relative;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            aspect-ratio: 4/5;
+            border: 2px solid var(--border);
+        }
+
+        .hero-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: var(--transition-slow);
+        }
+
+        .hero-image-wrapper:hover img {
+            transform: scale(1.05);
+        }
+
+        .floating-card {
+            position: absolute;
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.25rem;
+            box-shadow: var(--shadow);
+            animation: floatCard 6s ease-in-out infinite;
+            z-index: 10;
+        }
+
+        .floating-card.card-1 {
+            top: 5%;
+            left: -5%;
+            animation-delay: 0s;
+        }
+
+        .floating-card.card-2 {
+            bottom: 15%;
+            right: -5%;
+            animation-delay: 3s;
+        }
+
+        @keyframes floatCard {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        .floating-card-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
+            background: var(--gradient-1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .floating-card-title {
+            font-weight: 700;
+            font-size: 0.95rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .floating-card-text {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Sections */
+        section { padding: 5rem 1.5rem; }
+
+        .section-header {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+        }
+
+        .section-badge {
+            display: inline-block;
+            background: var(--gradient-1);
+            color: white;
+            padding: 0.5rem 1.25rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.875rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .section-title {
+            font-family: var(--font-heading);
+            font-size: clamp(1.75rem, 5vw, 2.5rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .section-subtitle {
+            font-size: clamp(0.95rem, 2vw, 1.125rem);
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        /* Universities Section */
+        .universities { background: var(--bg-secondary); }
+
+        .universities-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .university-card {
+            background: var(--bg-primary);
+            border-radius: 24px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            transition: var(--transition-slow);
+            position: relative;
+        }
+
+        .university-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--gradient-1);
+            transform: scaleX(0);
+            transition: transform 0.5s ease;
+        }
+
+        .university-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .university-card:hover::before { transform: scaleX(1); }
+
+        .university-header {
+            padding: 2rem;
+            background: var(--gradient-1);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .university-header::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 200px;
+            height: 200px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+        }
+
+        .university-icon {
+            width: 70px;
+            height: 70px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .university-name {
+            font-family: var(--font-heading);
+            font-size: clamp(1.25rem, 3vw, 1.75rem);
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .university-tagline {
+            opacity: 0.9;
+            font-size: 0.95rem;
+        }
+
+        .university-body { padding: 2rem; }
+
+        .university-description {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .university-features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .university-feature {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .university-feature i {
+            color: var(--success);
+            font-size: 1rem;
+        }
+
+        .university-stats {
+            display: flex;
+            flex-direction: row;
+            gap: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border);
+            justify-content: space-around;
+        }
+
+        .university-stat {
+            text-align: center;
+            min-width: 80px;
+        }
+
+        .university-stat-number {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            display: block;
+        }
+
+        .university-stat-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* Courses Section with Thumbnails */
+        .courses { background: var(--bg-primary); }
+
+        .courses-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .course-card {
+            background: var(--bg-secondary);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            transition: var(--transition-slow);
+            position: relative;
+        }
+
+        .course-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary);
+        }
+
+        .course-image-wrapper {
+            position: relative;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .course-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition-slow);
+        }
+
+        .course-card:hover .course-image {
+            transform: scale(1.1);
+        }
+
+        .course-badge {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: var(--gradient-1);
+            color: white;
+            padding: 0.35rem 1rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            z-index: 2;
+        }
+
+        .course-badge.free {
+            background: var(--success);
+        }
+
+        .course-body {
+            padding: 1.5rem;
+        }
+
+        .course-title {
+            font-family: var(--font-heading);
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+        }
+
+        .course-description {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1.25rem;
+        }
+
+        .course-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .course-students {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-muted);
+            font-size: 0.875rem;
+        }
+
+        .course-price {
+            font-family: var(--font-heading);
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .course-price.free {
+            color: var(--success);
+        }
+
+        /* Partners Section */
+        .partners {
+            background: var(--bg-secondary);
+            padding: 4rem 1.5rem;
+        }
+
+        .partners-grid {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .partner-logo {
+            max-width: 250px;
+            height: auto;
+            filter: grayscale(100%) brightness(0.8);
+            transition: var(--transition);
+            opacity: 0.7;
+        }
+
+        .partner-logo:hover {
+            filter: grayscale(0%) brightness(1);
+            opacity: 1;
+            transform: scale(1.05);
+        }
+
+        /* Contact Section */
+        .contact { background: var(--bg-primary); }
+
+        .contact-container { max-width: 1200px; margin: 0 auto; }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .contact-card {
+            background: var(--bg-secondary);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 1px solid var(--border);
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: var(--shadow);
+        }
+
+        .contact-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: var(--gradient-1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.75rem;
+            margin: 0 auto 1.5rem;
+        }
+
+        .contact-title {
+            font-family: var(--font-heading);
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+        }
+
+        .contact-text {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .contact-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .contact-link:hover { color: var(--secondary); }
+
+        .contact-form-wrapper {
+            grid-column: 1 / -1;
+            background: var(--bg-secondary);
+            border-radius: 24px;
+            padding: 3rem 2rem;
+            border: 1px solid var(--border);
+            margin-top: 1rem;
+        }
+
+        .contact-form-title {
+            font-family: var(--font-heading);
+            font-size: 1.75rem;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-group.full-width { grid-column: 1 / -1; }
+
+        .form-label {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .form-input,
+        .form-textarea {
+            padding: 1rem;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: var(--font-body);
+            font-size: 1rem;
+            transition: var(--transition);
+            width: 100%;
+        }
+
+        .form-input:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+        }
+
+        .form-textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .form-submit {
+            width: 100%;
+            padding: 1.25rem;
+            font-size: 1.1rem;
+            margin-top: 1rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--bg-secondary);
+            padding: 4rem 1.5rem 2rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr repeat(3, 1fr);
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-brand .logo {
+            margin-bottom: 1rem;
+            display: inline-flex;
+        }
+
+        .footer-brand p {
+            color: var(--text-muted);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .social-link {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .social-link:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-3px);
+            border-color: var(--primary);
+        }
+
+        .footer-column h4 {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            margin-bottom: 1.25rem;
+            font-size: 1.1rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+            transform: translateX(5px);
+        }
+
+        .footer-bottom {
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* ============================================
+           RESPONSIVE DESIGN - MOBILE ONLY
+        ============================================ */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .mobile-menu-btn { display: flex; }
+            
+            .hero { padding: 7rem 1rem 3rem; }
+            
+            .hero-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .hero-image {
+                order: -1;
+                max-width: 400px;
+                margin: 0 auto;
+            }
+            
+            .hero-content {
+                text-align: center;
+            }
+            
+            .hero-description {
+                border-left: none;
+                padding-left: 0;
+            }
+            
+            .hero-stats {
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 1.5rem;
+            }
+            
+            .hero-actions {
+                flex-direction: column;
+                width: 100%;
+            }
+            
+            .hero-actions .btn {
+                width: 100%;
+            }
+            
+            .floating-card { display: none; }
+            
+            .universities-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            section { padding: 4rem 1rem; }
+            
+            .courses-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .partners-grid { gap: 2rem; }
+            .partner-logo { max-width: 200px; }
+            
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .btn-large { width: 100%; }
+            .btn, .theme-toggle, .faq-question { min-height: 48px; }
+            
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            p, li {
+                font-size: 1rem;
+                line-height: 1.7;
+            }
+        }
+
+        @media (max-width: 480px) {
+            html { font-size: 14px; }
+            .hero-title { font-size: 1.75rem; }
+            .section-title { font-size: 1.5rem; }
+            .university-card, .contact-card { padding: 1.5rem; }
+            .floating-card { display: none !important; }
+            .university-features { grid-template-columns: 1fr; }
+        }
+
+        @media (max-height: 600px) and (orientation: landscape) {
+            .hero { min-height: auto; padding: 6rem 1.5rem 3rem; }
+            .hero-container { gap: 2rem; }
+            .hero-image-wrapper { max-height: 400px; }
+        }
+
+        /* Animation Classes */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .stagger-1 { transition-delay: 0.1s; }
+        .stagger-2 { transition-delay: 0.2s; }
+        .stagger-3 { transition-delay: 0.3s; }
+        .stagger-4 { transition-delay: 0.4s; }
+
+        .gradient-text {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 50%, var(--accent) 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 5s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% center; }
+            50% { background-position: 100% center; }
+            100% { background-position: 0% center; }
+        }
+
+        .glass {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+        }
+
+        .glow {
+            box-shadow: 0 0 30px rgba(220, 38, 38, 0.3);
+        }
+
+        .glow:hover {
+            box-shadow: 0 0 50px rgba(220, 38, 38, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <!-- Preloader -->
+    <div class="preloader" id="preloader">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Scroll Progress -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <i class="fas fa-graduation-cap"></i>
+                Saad Hashmani
+            </a>
+            
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#universities">Universities</a></li>
+                <li><a href="#courses">Courses</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="about.html" target="_blank">My Story</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                    <i class="fas fa-sun"></i>
+                </button>
+                <a href="https://thehuniversity.com" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+                    <i class="fas fa-rocket"></i>
+                    <span class="hide-mobile">Enroll Now</span>
+                </a>
+                
+                <!-- ✅ ACCOUNT DROPDOWN -->
+                <div class="account-dropdown" id="accountDropdown">
+                    <!-- Will be populated by JavaScript -->
+                </div>
+                
+                <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#home" onclick="closeMobileMenu()">Home</a>
+        <a href="#universities" onclick="closeMobileMenu()">Universities</a>
+        <a href="#courses" onclick="closeMobileMenu()">Courses</a>
+        <a href="#contact" onclick="closeMobileMenu()">Contact</a>
+        <a href="about.html" target="_blank" onclick="closeMobileMenu()">My Story</a>
+        
+        <!-- ✅ MOBILE ACCOUNT SECTION -->
+        <div class="mobile-account-section" id="mobileAccountSection">
+            <!-- Will be populated by JavaScript -->
+        </div>
+        
+        <a href="https://thehuniversity.com" target="_blank" rel="noopener noreferrer" style="color: var(--primary); margin-top: 1rem;">Enroll Now</a>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-bg"></div>
+        <div class="particles-container" id="particlesContainer"></div>
+        
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <i class="fas fa-star"></i>
+                    From Poverty to Possibility
+                </div>
+                
+                <h1 class="hero-title">
+                    A Boy With A
+                    <span class="highlight">Dream</span>
+                </h1>
+                
+                <p class="hero-subtitle">
+                    He proved to himself that dreams can come true. From poverty to possibility, 
+                    Hashmani turned his life around immensely and has become one of the most 
+                    successful businessmen in the US.
+                </p>
+                
+                <p class="hero-description">
+                    "Self control is strength. Right thought is mastery. Calmness is power."
+                </p>
+                
+                <div class="hero-actions">
+                    <a href="#contact" class="btn btn-primary btn-large">
+                        <i class="fas fa-envelope"></i>
+                        Get In Touch
+                    </a>
+                    <a href="about.html" target="_blank" class="btn btn-secondary btn-large">
+                        <i class="fas fa-book-open"></i>
+                        Read My Story
+                    </a>
+                </div>
+
+                <div class="hero-stats">
+                    <div class="hero-stat">
+                        <span class="hero-stat-number" data-target="500" data-suffix="K+">0</span>
+                        <span class="hero-stat-label">Students</span>
+                    </div>
+                    <div class="hero-stat">
+                        <span class="hero-stat-number" data-target="50" data-suffix="M+">0</span>
+                        <span class="hero-stat-label">Net Worth</span>
+                    </div>
+                    <div class="hero-stat">
+                        <span class="hero-stat-number" data-target="15" data-suffix="+">0</span>
+                        <span class="hero-stat-label">Countries</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-image">
+                <div class="hero-image-wrapper">
+                    <img 
+                        src="https://miro.medium.com/v2/resize:fit:750/format:webp/1*_XUaVCkBOkBrRuUApKO_-w.jpeg"
+                        alt="Saad Hashmani - Entrepreneur & Mentor"
+                        width="800"
+                        height="1000"
+                        loading="eager"
+                        onerror="this.onerror=null; this.parentElement.innerHTML='<div style=\'width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:var(--gradient-1);font-size:4rem;font-weight:900;color:white;font-family:var(--font-heading)\'>SH</div>';"
+                    >
+                </div>
+                
+                <div class="floating-card card-1">
+                    <div class="floating-card-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <div class="floating-card-title">Top 1% Mentor</div>
+                    <div class="floating-card-text">Recognized globally</div>
+                </div>
+
+                <div class="floating-card card-2">
+                    <div class="floating-card-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="floating-card-title">500K+ Community</div>
+                    <div class="floating-card-text">Active learners</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Universities Showcase -->
+    <section class="universities" id="universities">
+        <div class="section-header reveal">
+            <span class="section-badge">Educational Platforms</span>
+            <h2 class="section-title">Free Education For Everyone</h2>
+            <p class="section-subtitle">
+                Saad Hashmani founded two revolutionary platforms to provide free and professional 
+                education to middle-class people worldwide
+            </p>
+        </div>
+
+        <div class="universities-grid">
+            <!-- TheHUniversity -->
+            <div class="university-card reveal stagger-1">
+                <div class="university-header" style="background: var(--gradient-1);">
+                    <div class="university-icon">
+                        <i class="fas fa-university"></i>
+                    </div>
+                    <h3 class="university-name">TheHUniversity</h3>
+                    <p class="university-tagline">Empowering Through Knowledge</p>
+                </div>
+                <div class="university-body">
+                    <p class="university-description">
+                        TheHUniversity.com offers free and professional courses for middle-class 
+                        people without charging them. master the skills that matter.
+                    </p>
+                    <div class="university-features">
+                        <div class="university-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>10+ Video Courses</span>
+                        </div>
+                        <div class="university-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Updated Sessions</span>
+                        </div>
+                        <div class="university-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Millionaire Mentors</span>
+                        </div>
+                        <div class="university-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Free in Pakistan</span>
+                        </div>
+                    </div>
+                    <div class="university-stats">
+                        <div class="university-stat">
+                            <span class="university-stat-number" data-target="10" data-suffix="+">0</span>
+                            <span class="university-stat-label">Courses</span>
+                        </div>
+                        <div class="university-stat">
+                            <span class="university-stat-number" data-target="500" data-suffix="K+">0</span>
+                            <span class="university-stat-label">Students</span>
+                        </div>
+                        <div class="university-stat">
+                            <span class="university-stat-number" data-target="24" data-suffix="/7">0</span>
+                            <span class="university-stat-label">Support</span>
+                        </div>
+                    </div>
+                    <div style="margin-top: 1.5rem;">
+                        <a href="https://thehuniversity.com" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="width: 100%; justify-content: center;">
+                            <i class="fas fa-external-link-alt"></i>
+                            Visit TheHUniversity
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TradingPapa -->
+            <div class="university-card reveal stagger-2">
+                <div class="university-header" style="background: var(--gradient-2);">
+                    <div class="university-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="university-name">TradingPapa</h3>
+                    <p class="university-tagline">Master The Markets</p>
+                </div>
+                <div class="university-body">
+                    <p class="university-description">
+                        TradingPapa.com is your gateway to financial freedom through expert trading 
+                        education. Learn forex, stocks, crypto, and commodities from industry experts.
+                    </p>
+                    <div class="university-features">
+                        <div class="university-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>4+ Advanced Courses</span>
+                        </div>
+                        <div class="university-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Market Analysis</span>
+                        </div>
+                        <div class="university-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Risk Management</span>
+                        </div>
+                        <div class="university-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Live Trading</span>
+                        </div>
+                    </div>
+                    <div class="university-stats">
+                        <div class="university-stat">
+                            <span class="university-stat-number" data-target="4" data-suffix="+">0</span>
+                            <span class="university-stat-label">Courses</span>
+                        </div>
+                        <div class="university-stat">
+                            <span class="university-stat-number" data-target="100" data-suffix="K+">0</span>
+                            <span class="university-stat-label">Students</span>
+                        </div>
+                        <div class="university-stat">
+                            <span class="university-stat-number" data-target="15" data-suffix="+">0</span>
+                            <span class="university-stat-label">Countries</span>
+                        </div>
+                    </div>
+                    <div style="margin-top: 1.5rem;">
+                        <a href="https://tradingpapa.com" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="width: 100%; justify-content: center;">
+                            <i class="fas fa-external-link-alt"></i>
+                            Visit TradingPapa
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Courses Section with Thumbnails -->
+    <section class="courses" id="courses">
+        <div class="section-header reveal">
+            <span class="section-badge">Course Catalog</span>
+            <h2 class="section-title">Learn In-Demand Skills</h2>
+            <p class="section-subtitle">
+                Master practical skills that can transform your career and financial future
+            </p>
+        </div>
+
+        <div class="courses-grid">
+            <!-- Amazon Private Label -->
+            <div class="course-card reveal stagger-1">
+                <div class="course-image-wrapper">
+                    <img src="https://thehuniversity.com/wp-content/uploads/2024/10/1-Private-Label_1_11zon.webp" alt="Amazon Private Label" class="course-image" loading="lazy">
+                    <span class="course-badge free">Free</span>
+                </div>
+                <div class="course-body">
+                    <h3 class="course-title">Amazon Private Label</h3>
+                    <p class="course-description">
+                        Create your unique brand and product line on the world's largest marketplace.
+                    </p>
+                    <div class="course-footer">
+                        <div class="course-students">
+                            <i class="fas fa-users"></i>
+                            <span>100K+ Enrolled</span>
+                        </div>
+                        <div class="course-price free">FREE</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Amazon Wholesale -->
+            <div class="course-card reveal stagger-2">
+                <div class="course-image-wrapper">
+                    <img src="https://thehuniversity.com/wp-content/uploads/2024/10/2-Wholesale_2_11zon.webp" alt="Amazon Wholesale" class="course-image" loading="lazy">
+                    <span class="course-badge free">Free</span>
+                </div>
+                <div class="course-body">
+                    <h3 class="course-title">Amazon Wholesale</h3>
+                    <p class="course-description">
+                        Source top-selling products and profit from a ready-made global market.
+                    </p>
+                    <div class="course-footer">
+                        <div class="course-students">
+                            <i class="fas fa-users"></i>
+                            <span>90K+ Enrolled</span>
+                        </div>
+                        <div class="course-price free">FREE</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Crypto Trading -->
+            <div class="course-card reveal stagger-3">
+                <div class="course-image-wrapper">
+                    <img src="https://thehuniversity.com/wp-content/uploads/2024/10/3-Crypto-Trading_3_11zon-768x432.webp" alt="Crypto Trading" class="course-image" loading="lazy">
+                    <span class="course-badge">Popular</span>
+                </div>
+                <div class="course-body">
+                    <h3 class="course-title">Crypto Trading</h3>
+                    <p class="course-description">
+                        Navigate, invest, and profit from the cryptocurrency revolution.
+                    </p>
+                    <div class="course-footer">
+                        <div class="course-students">
+                            <i class="fas fa-users"></i>
+                            <span>64K+ Enrolled</span>
+                        </div>
+                        <div class="course-price free">FREE</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Shopify -->
+            <div class="course-card reveal stagger-1">
+                <div class="course-image-wrapper">
+                    <img src="https://thehuniversity.com/wp-content/uploads/2024/10/Shopify_00000-2_9_11zon-768x432.webp" alt="Shopify" class="course-image" loading="lazy">
+                    <span class="course-badge free">Free</span>
+                </div>
+                <div class="course-body">
+                    <h3 class="course-title">Shopify Mastery</h3>
+                    <p class="course-description">
+                        Build your own online store and reach millions of customers worldwide.
+                    </p>
+                    <div class="course-footer">
+                        <div class="course-students">
+                            <i class="fas fa-users"></i>
+                            <span>40K+ Enrolled</span>
+                        </div>
+                        <div class="course-price free">FREE</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TikTok Shop -->
+            <div class="course-card reveal stagger-2">
+                <div class="course-image-wrapper">
+                    <img src="https://thehuniversity.com/wp-content/uploads/2024/10/5-Tiktok_4_11zon-768x432.webp" alt="TikTok Shop" class="course-image" loading="lazy">
+                    <span class="course-badge">Trending</span>
+                </div>
+                <div class="course-body">
+                    <h3 class="course-title">TikTok Shop</h3>
+                    <p class="course-description">
+                        Monetize trends and sell instantly to a global audience.
+                    </p>
+                    <div class="course-footer">
+                        <div class="course-students">
+                            <i class="fas fa-users"></i>
+                            <span>15K+ Enrolled</span>
+                        </div>
+                        <div class="course-price free">FREE</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Video Editing -->
+            <div class="course-card reveal stagger-3">
+                <div class="course-image-wrapper">
+                    <img src="https://thehuniversity.com/wp-content/uploads/2024/10/6-Video-Editing_5_11zon-768x432.webp" alt="Video Editing" class="course-image" loading="lazy">
+                    <span class="course-badge free">Free</span>
+                </div>
+                <div class="course-body">
+                    <h3 class="course-title">Video Editing Pro</h3>
+                    <p class="course-description">
+                        Turn raw footage into visual masterpieces that captivate audiences.
+                    </p>
+                    <div class="course-footer">
+                        <div class="course-students">
+                            <i class="fas fa-users"></i>
+                            <span>20K+ Enrolled</span>
+                        </div>
+                        <div class="course-price free">FREE</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lead Generation -->
+            <div class="course-card reveal stagger-1">
+                <div class="course-image-wrapper">
+                    <img src="https://thehuniversity.com/wp-content/uploads/2024/10/7-Lead-Generation_6_11zon-768x432.webp" alt="Lead Generation" class="course-image" loading="lazy">
+                    <span class="course-badge free">Free</span>
+                </div>
+                <div class="course-body">
+                    <h3 class="course-title">Lead Generation</h3>
+                    <p class="course-description">
+                        Master client acquisition and build a robust business network.
+                    </p>
+                    <div class="course-footer">
+                        <div class="course-students">
+                            <i class="fas fa-users"></i>
+                            <span>36K+ Enrolled</span>
+                        </div>
+                        <div class="course-price free">FREE</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Immigration Guidance -->
+            <div class="course-card reveal stagger-2">
+                <div class="course-image-wrapper">
+                    <img src="https://thehuniversity.com/wp-content/uploads/2024/10/8-Immigration-Guidance_7_11zon-768x432.webp" alt="Immigration Guidance" class="course-image" loading="lazy">
+                    <span class="course-badge">Exclusive</span>
+                </div>
+                <div class="course-body">
+                    <h3 class="course-title">Immigration Guidance</h3>
+                    <p class="course-description">
+                        Navigate global pathways with confidence and expert knowledge.
+                    </p>
+                    <div class="course-footer">
+                        <div class="course-students">
+                            <i class="fas fa-users"></i>
+                            <span>12K+ Enrolled</span>
+                        </div>
+                        <div class="course-price free">FREE</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Daraz Local -->
+            <div class="course-card reveal stagger-3">
+                <div class="course-image-wrapper">
+                    <img src="https://thehuniversity.com/wp-content/uploads/2024/10/9-Daraz-Local_8_11zon-768x432.webp" alt="Daraz Local" class="course-image" loading="lazy">
+                    <span class="course-badge free">Free</span>
+                </div>
+                <div class="course-body">
+                    <h3 class="course-title">Daraz Local</h3>
+                    <p class="course-description">
+                        Sell on Pakistan's largest marketplace and grow your income.
+                    </p>
+                    <div class="course-footer">
+                        <div class="course-students">
+                            <i class="fas fa-users"></i>
+                            <span>98K+ Enrolled</span>
+                        </div>
+                        <div class="course-price free">FREE</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partners Section -->
+    <section class="partners">
+        <div class="section-header reveal">
+            <span class="section-badge">Partnerships</span>
+            <h2 class="section-title">In Partnership With</h2>
+            <p class="section-subtitle">
+                Collaborating with leading platforms to bring you the best education
+            </p>
+        </div>
+
+        <div class="partners-grid reveal">
+            <img src="https://thehuniversity.com/wp-content/uploads/2024/08/The-H-University-Logo-Option-2.png" alt="The H University" class="partner-logo" loading="lazy">
+            <img src="https://thehuniversity.com/wp-content/uploads/2025/11/Trading-papa-gradient-transparent-1.webp" alt="Trading Papa" class="partner-logo" loading="lazy">
+            <img src="https://thehuniversity.com/wp-content/uploads/2025/11/In-Partnership-with-Trading-Papa.webp" alt="Partnership" class="partner-logo" loading="lazy" style="max-width: 300px;">
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="contact-container">
+            <div class="section-header reveal">
+                <span class="section-badge">Get In Touch</span>
+                <h2 class="section-title">Contact & Queries</h2>
+                <p class="section-subtitle">
+                    Have questions? Want to collaborate? We're here to help you succeed
+                </p>
+            </div>
+
+            <div class="contact-grid">
+                <!-- Email Contact -->
+                <div class="contact-card reveal stagger-1">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <h3 class="contact-title">Email Us</h3>
+                    <p class="contact-text">
+                        For general inquiries, partnerships, and business opportunities
+                    </p>
+                    <a href="mailto:contact@saadhashmani.com" class="contact-link">
+                        <i class="fas fa-arrow-right"></i>
+                        contact@saadhashmani.com
+                    </a>
+                </div>
+
+                <!-- WhatsApp Contact -->
+                <div class="contact-card reveal stagger-2">
+                    <div class="contact-icon">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <h3 class="contact-title">WhatsApp</h3>
+                    <p class="contact-text">
+                        Quick responses for urgent queries and student support
+                    </p>
+                    <a href="https://wa.me/1234567890" target="_blank" rel="noopener noreferrer" class="contact-link">
+                        <i class="fas fa-arrow-right"></i>
+                        +1 (234) 567-890
+                    </a>
+                </div>
+
+                <!-- LinkedIn Contact -->
+                <div class="contact-card reveal stagger-3">
+                    <div class="contact-icon">
+                        <i class="fab fa-linkedin-in"></i>
+                    </div>
+                    <h3 class="contact-title">LinkedIn</h3>
+                    <p class="contact-text">
+                        Connect professionally and explore collaboration opportunities
+                    </p>
+                    <a href="https://www.linkedin.com/in/saad-hashmani-b252418a" target="_blank" rel="noopener noreferrer" class="contact-link">
+                        <i class="fas fa-arrow-right"></i>
+                        View Profile
+                    </a>
+                </div>
+
+                <!-- Instagram Contact -->
+                <div class="contact-card reveal stagger-4">
+                    <div class="contact-icon">
+                        <i class="fab fa-instagram"></i>
+                    </div>
+                    <h3 class="contact-title">Instagram</h3>
+                    <p class="contact-text">
+                        Follow for daily motivation, success tips, and updates
+                    </p>
+                    <a href="https://www.instagram.com/saadahashmani/" target="_blank" rel="noopener noreferrer" class="contact-link">
+                        <i class="fas fa-arrow-right"></i>
+                        @saadahashmani
+                    </a>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="contact-form-wrapper reveal">
+                    <h3 class="contact-form-title">Send Us a Message</h3>
+                    <form id="contactForm" onsubmit="handleSubmit(event)">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label class="form-label" for="name">Full Name *</label>
+                                <input type="text" id="name" name="name" class="form-input" required placeholder="John Doe">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="email">Email Address *</label>
+                                <input type="email" id="email" name="email" class="form-input" required placeholder="john@example.com">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="phone">Phone Number</label>
+                                <input type="tel" id="phone" name="phone" class="form-input" placeholder="+1 (234) 567-890">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="subject">Subject *</label>
+                                <select id="subject" name="subject" class="form-input" required>
+                                    <option value="">Select a subject</option>
+                                    <option value="general">General Inquiry</option>
+                                    <option value="admission">Admission Question</option>
+                                    <option value="partnership">Business Partnership</option>
+                                    <option value="support">Technical Support</option>
+                                    <option value="mentorship">Mentorship Program</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            <div class="form-group full-width">
+                                <label class="form-label" for="message">Your Message *</label>
+                                <textarea id="message" name="message" class="form-textarea" required placeholder="Tell us how we can help you..."></textarea>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-large form-submit">
+                            <i class="fas fa-paper-plane"></i>
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="#" class="logo">
+                        <i class="fas fa-graduation-cap"></i>
+                        Saad Hashmani
+                    </a>
+                    <p>
+                        From poverty to possibility. Empowering the next generation of entrepreneurs 
+                        through free education and mentorship. Join 500,000+ students worldwide.
+                    </p>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/in/saad-hashmani-b252418a" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="https://www.instagram.com/saadahashmani/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://www.google.com/search?q=Saad+Hashmani" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Google">
+                            <i class="fab fa-google"></i>
+                        </a>
+                        <a href="https://thehuniversity.com" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="TheHUniversity">
+                            <i class="fas fa-university"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="#home"><i class="fas fa-chevron-right"></i> Home</a></li>
+                        <li><a href="about.html" target="_blank"><i class="fas fa-book-open"></i> My Story</a></li>
+                        <li><a href="#universities"><i class="fas fa-chevron-right"></i> Universities</a></li>
+                        <li><a href="#courses"><i class="fas fa-chevron-right"></i> Courses</a></li>
+                        <li><a href="#contact"><i class="fas fa-chevron-right"></i> Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="#home"><i class="fas fa-chevron-right"></i> Home</a></li>
+                        <li><a href="#universities"><i class="fas fa-chevron-right"></i> Universities</a></li>
+                        <li><a href="#courses"><i class="fas fa-chevron-right"></i> Courses</a></li>
+                        <li><a href="#contact"><i class="fas fa-chevron-right"></i> Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Contact</h4>
+                    <ul class="footer-links">
+                        <li><a href="mailto:contact@saadhashmani.com"><i class="fas fa-envelope"></i> Email Us</a></li>
+                        <li><a href="https://wa.me/1234567890"><i class="fab fa-whatsapp"></i> WhatsApp</a></li>
+                        <li><a href="#contact"><i class="fas fa-comment"></i> Send Message</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 Saad Hashmani. All rights reserved.</p>
+                <p>Built with <i class="fas fa-heart" style="color: var(--primary);"></i> for education</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Preloader
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('preloader').classList.add('hidden');
+            }, 500);
+        });
+
+        // Scroll Progress
+        window.addEventListener('scroll', () => {
+            const scrolled = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+            document.getElementById('scrollProgress').style.width = scrolled + '%';
+        });
+
+        // Navbar Scroll Effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile Menu
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+            mobileMenuBtn.classList.toggle('active');
+        });
+
+        function closeMobileMenu() {
+            mobileMenu.classList.remove('active');
+            mobileMenuBtn.classList.remove('active');
+        }
+
+        // Theme Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const html = document.documentElement;
+        const themeIcon = themeToggle.querySelector('i');
+
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        html.setAttribute('data-theme', savedTheme);
+        updateThemeIcon(savedTheme);
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeIcon(newTheme);
+        });
+
+        function updateThemeIcon(theme) {
+            if (theme === 'dark') {
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+            } else {
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+            }
+        }
+
+        // Enhanced Particle System
+        function createParticles() {
+            const container = document.getElementById('particlesContainer');
+            const particleCount = window.innerWidth < 768 ? 30 : 60;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                
+                // Random particle type
+                const type = Math.random();
+                if (type < 0.4) {
+                    particle.classList.add('bubble');
+                    const size = Math.random() * 60 + 20;
+                    particle.style.width = `${size}px`;
+                    particle.style.height = `${size}px`;
+                } else if (type < 0.7) {
+                    particle.classList.add('dust');
+                    const size = Math.random() * 4 + 2;
+                    particle.style.width = `${size}px`;
+                    particle.style.height = `${size}px`;
+                } else {
+                    particle.classList.add('sparkle');
+                    const size = Math.random() * 10 + 5;
+                    particle.style.width = `${size}px`;
+                    particle.style.height = `${size}px`;
+                }
+                
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.animationDelay = `${Math.random() * 15}s`;
+                particle.style.animationDuration = `${Math.random() * 10 + 10}s`;
+                
+                container.appendChild(particle);
+            }
+        }
+
+        createParticles();
+
+        // Counter Animation
+        const counters = document.querySelectorAll('[data-target]');
+        const speed = 200;
+
+        const animateCounter = (counter) => {
+            const target = +counter.getAttribute('data-target');
+            const suffix = counter.getAttribute('data-suffix') || '';
+            
+            // Safely extract only numbers from current text to prevent NaN
+            const currentText = counter.innerText.replace(/[^0-9]/g, '');
+            let current = currentText ? parseInt(currentText) : 0;
+            
+            const increment = Math.ceil(target / speed);
+
+            if (current < target) {
+                const nextVal = current + increment;
+                counter.innerText = (nextVal > target ? target : nextVal) + suffix;
+                setTimeout(() => animateCounter(counter), 20);
+            } else {
+                counter.innerText = target + suffix;
+            }
+        };
+
+        const observerOptions = { threshold: 0.5, rootMargin: '0px' };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounter(entry.target);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        counters.forEach(counter => observer.observe(counter));
+
+        // Scroll Reveal
+        const revealElements = document.querySelectorAll('.reveal');
+
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // Contact Form Handler
+        function handleSubmit(e) {
+            e.preventDefault();
+            alert('Thank you for your message! We will get back to you soon.');
+            e.target.reset();
+        }
+
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href !== '#') {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                }
+            });
+        });
+
+        // Performance: Reduce animations on mobile
+        if (window.innerWidth < 768) {
+            document.documentElement.style.setProperty('--transition', 'all 0.2s ease');
+            document.documentElement.style.setProperty('--transition-slow', 'all 0.3s ease');
+        }
+
+        // Prevent Zoom on Double Tap (iOS)
+        let lastTouchEnd = 0;
+        document.addEventListener('touchend', (e) => {
+            const now = Date.now();
+            if (now - lastTouchEnd <= 300) {
+                e.preventDefault();
+            }
+            lastTouchEnd = now;
+        }, false);
+
+        // Console Message
+        console.log('%c🚀 Saad Hashmani Portfolio', 'color: #dc2626; font-size: 24px; font-weight: bold;');
+        console.log('%cBuilt with passion for education', 'color: #f97316; font-size: 14px;');
+        console.log('%c📚 TheHUniversity.com | TradingPapa.com', 'color: #fb923c; font-size: 12px;');
+
+        // ============================================
+        // ✅ ACCOUNT DROPDOWN FUNCTIONALITY
+        // ============================================
+
+        const ACCOUNT_STORAGE_KEY = 'sh_user_data';
+        let currentUser = null;
+
+        // Check if user is logged in
+        function checkAuthStatus() {
+            try {
+                const storedData = localStorage.getItem(ACCOUNT_STORAGE_KEY);
+                if (storedData) {
+                    currentUser = JSON.parse(storedData);
+                    updateAccountUI();
+                } else {
+                    currentUser = null;
+                    updateAccountUI();
+                }
+            } catch (e) {
+                console.warn('Auth check failed:', e);
+                currentUser = null;
+                updateAccountUI();
+            }
+        }
+
+        // Update account UI based on login status
+        function updateAccountUI() {
+            const dropdown = document.getElementById('accountDropdown');
+            if (!dropdown) return;
+
+            if (currentUser) {
+                // User is logged in - show avatar with dropdown
+                const initials = currentUser.name.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2);
+                
+                dropdown.innerHTML = `
+                    <button class="account-btn" onclick="toggleAccountDropdown()" title="${currentUser.name}">
+                        ${initials}
+                    </button>
+                    <div class="account-dropdown-menu" id="accountDropdownMenu">
+                        <div class="account-dropdown-header">
+                            <div class="account-dropdown-avatar">${initials}</div>
+                            <div class="account-dropdown-name">${currentUser.name}</div>
+                            <div class="account-dropdown-email">${currentUser.email}</div>
+                        </div>
+                        <div class="account-dropdown-body">
+                            <a href="login-signup.html" class="account-dropdown-item">
+                                <i class="fas fa-user"></i>
+                                <span>View Profile</span>
+                            </a>
+                            <a href="#" class="account-dropdown-item" onclick="logoutFromMainSite(); return false;">
+                                <i class="fas fa-sign-out-alt"></i>
+                                <span>Logout</span>
+                            </a>
+                            <div class="account-dropdown-divider"></div>
+                            <div class="account-dropdown-item" style="cursor: default;">
+                                <i class="fas fa-shield-alt"></i>
+                                <span style="font-size: 0.85rem; color: var(--success);">
+                                    <i class="fas fa-check-circle"></i> Session Active
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            } else {
+                // User is not logged in - show login button
+                dropdown.innerHTML = `
+                    <a href="login-signup.html" class="account-btn login-btn btn btn-secondary">
+                        <i class="fas fa-user"></i>
+                        <span class="hide-mobile">Login</span>
+                    </a>
+                `;
+            }
+        }
+
+        // Toggle dropdown menu
+        function toggleAccountDropdown() {
+            const menu = document.getElementById('accountDropdownMenu');
+            if (menu) {
+                menu.classList.toggle('active');
+            }
+        }
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(e) {
+            const dropdown = document.getElementById('accountDropdown');
+            const menu = document.getElementById('accountDropdownMenu');
+            
+            if (dropdown && menu && !dropdown.contains(e.target)) {
+                menu.classList.remove('active');
+            }
+        });
+
+        // Logout from main site
+        function logoutFromMainSite() {
+            if (confirm('Are you sure you want to logout?')) {
+                localStorage.removeItem(ACCOUNT_STORAGE_KEY);
+                localStorage.removeItem('sh_user_email');
+                sessionStorage.clear();
+                currentUser = null;
+                updateAccountUI();
+                showToast('Logged out successfully.', 'success');
+                
+                // Close dropdown
+                const menu = document.getElementById('accountDropdownMenu');
+                if (menu) {
+                    menu.classList.remove('active');
+                }
+            }
+        }
+
+        // Toast notification
+        function showToast(message, type = 'success') {
+            // Remove existing toasts
+            const existingToast = document.querySelector('.main-toast');
+            if (existingToast) {
+                existingToast.remove();
+            }
+            
+            const toast = document.createElement('div');
+            toast.className = `main-toast ${type === 'error' ? 'toast-error' : ''}`;
+            toast.style.cssText = `
+                position: fixed;
+                top: 80px;
+                right: 20px;
+                background: var(--bg-secondary);
+                border: 1px solid var(--border);
+                border-left: 4px solid ${type === 'success' ? 'var(--success)' : 'var(--danger)'};
+                padding: 1rem 1.5rem;
+                border-radius: 12px;
+                box-shadow: var(--shadow-lg);
+                z-index: 10000;
+                animation: slideIn 0.3s ease;
+            `;
+            toast.innerHTML = `
+                <i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle'}" 
+                   style="color: ${type === 'success' ? 'var(--success)' : 'var(--danger)'}; margin-right: 0.75rem;"></i>
+                <span>${message}</span>
+            `;
+            
+            document.body.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+
+        // Update mobile menu account section
+        function updateMobileAccountSection() {
+            const section = document.getElementById('mobileAccountSection');
+            if (!section) return;
+            
+            if (currentUser) {
+                const initials = currentUser.name.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2);
+                section.innerHTML = `
+                    <div style="padding: 1rem; background: var(--bg-tertiary); border-radius: 12px; margin-bottom: 1rem;">
+                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                            <div style="width: 50px; height: 50px; border-radius: 50%; background: var(--gradient-1); display: flex; align-items: center; justify-content: center; font-weight: 700; color: white;">
+                                ${initials}
+                            </div>
+                            <div>
+                                <div style="font-weight: 700;">${currentUser.name}</div>
+                                <div style="font-size: 0.85rem; color: var(--text-muted);">${currentUser.email}</div>
+                            </div>
+                        </div>
+                        <button onclick="logoutFromMainSite(); closeMobileMenu();" class="btn btn-danger" style="width: 100%;">
+                            <i class="fas fa-sign-out-alt"></i> Logout
+                        </button>
+                    </div>
+                `;
+            } else {
+                section.innerHTML = `
+                    <a href="login-signup.html" class="btn btn-primary" style="width: 100%; margin-bottom: 1rem;">
+                        <i class="fas fa-user"></i> Login / Sign Up
+                    </a>
+                `;
+            }
+        }
+
+        // Override mobile menu open to update account section
+        const originalOpenMobileMenu = window.openMobileMenu;
+        window.openMobileMenu = function() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            mobileMenu.classList.add('active');
+            mobileMenuBtn.classList.add('active');
+            updateMobileAccountSection();
+        }
+
+        // Check auth status on page load
+        window.addEventListener('load', checkAuthStatus);
+
+        // Listen for storage changes (logout from other tab)
+        window.addEventListener('storage', function(e) {
+            if (e.key === ACCOUNT_STORAGE_KEY || e.key === 'sh_user_email') {
+                checkAuthStatus();
+            }
+        });
+    </script>
+</body>
+</html>

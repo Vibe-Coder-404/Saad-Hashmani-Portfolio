@@ -1,0 +1,1184 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#dc2626">
+    <title>Saad Hashmani | The Real Story - Struggles, Truth & Mission</title>
+    <meta name="description" content="The untold story of Saad Hashmani - From poverty to success, controversies, criticism, and his mission for free education">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #dc2626;
+            --primary-dark: #b91c1c;
+            --primary-light: #ef4444;
+            --secondary: #f97316;
+            --accent: #fb923c;
+            --success: #10b981;
+            --danger: #ef4444;
+            
+            --bg-primary: #000000;
+            --bg-secondary: #0a0a0a;
+            --bg-tertiary: #1a1a1a;
+            --text-primary: #ffffff;
+            --text-secondary: #e5e5e5;
+            --text-muted: #a3a3a3;
+            
+            --border: rgba(255, 255, 255, 0.08);
+            --glass: rgba(10, 10, 10, 0.85);
+            --shadow: 0 25px 50px -12px rgba(220, 38, 38, 0.25);
+            --shadow-lg: 0 50px 100px -20px rgba(220, 38, 38, 0.35);
+            
+            --gradient-1: linear-gradient(135deg, #dc2626 0%, #f97316 100%);
+            --gradient-2: linear-gradient(135deg, #ef4444 0%, #fb923c 100%);
+            --gradient-hero: linear-gradient(135deg, #dc2626 0%, #f97316 50%, #ef4444 100%);
+            
+            --font-heading: 'Outfit', sans-serif;
+            --font-body: 'Plus Jakarta Sans', sans-serif;
+            
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        [data-theme="light"] {
+            --bg-primary: #ffffff;
+            --bg-secondary: #fafafa;
+            --bg-tertiary: #f5f5f5;
+            --text-primary: #000000;
+            --text-secondary: #262626;
+            --text-muted: #525252;
+            --border: rgba(0, 0, 0, 0.08);
+            --glass: rgba(255, 255, 255, 0.9);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 1rem 0;
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+        }
+
+        .nav-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: var(--gradient-1);
+            color: white;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .nav-back:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(220, 38, 38, 0.3);
+        }
+
+        /* Hero Section */
+        .about-hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8rem 2rem 4rem;
+            position: relative;
+            background: var(--gradient-hero);
+            overflow: hidden;
+        }
+
+        .about-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        .about-hero-content {
+            max-width: 900px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .about-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .about-hero h1 {
+            font-family: var(--font-heading);
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-hero h1 .highlight {
+            background: linear-gradient(135deg, #fff 0%, #fbbf24 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .about-hero p {
+            font-size: 1.25rem;
+            opacity: 0.95;
+            line-height: 1.8;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-20px); }
+            60% { transform: translateX(-50%) translateY(-10px); }
+        }
+
+        .scroll-indicator i {
+            font-size: 2rem;
+            color: white;
+            opacity: 0.7;
+        }
+
+        /* Sections */
+        section {
+            padding: 6rem 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-badge {
+            display: inline-block;
+            background: var(--gradient-1);
+            color: white;
+            padding: 0.5rem 1.25rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.875rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .section-title {
+            font-family: var(--font-heading);
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.125rem;
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Identity Section - NOW AT TOP */
+        .identity {
+            background: var(--bg-secondary);
+            padding: 5rem 2rem;
+        }
+
+        .identity-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .identity-image {
+            position: relative;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .identity-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .identity-content h3 {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+        }
+
+        .identity-content p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .identity-list {
+            list-style: none;
+            margin-top: 2rem;
+        }
+
+        .identity-list li {
+            padding: 1rem;
+            margin-bottom: 1rem;
+            background: var(--bg-primary);
+            border-radius: 12px;
+            border-left: 4px solid var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .identity-list li i {
+            color: var(--primary);
+            font-size: 1.25rem;
+        }
+
+        /* Timeline - Cinematic Struggles */
+        .struggles {
+            background: var(--bg-primary);
+            position: relative;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 3px;
+            height: 100%;
+            background: var(--gradient-1);
+        }
+
+        .timeline-item {
+            margin-bottom: 4rem;
+            position: relative;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+
+        .timeline-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content {
+            margin-right: 50%;
+            padding-right: 3rem;
+            text-align: right;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content {
+            margin-left: 50%;
+            padding-left: 3rem;
+            text-align: left;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 24px;
+            height: 24px;
+            background: var(--gradient-1);
+            border-radius: 50%;
+            border: 4px solid var(--bg-secondary);
+            box-shadow: 0 0 0 4px var(--primary);
+            top: 0;
+        }
+
+        .timeline-year {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-title {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-content {
+            background: var(--bg-secondary);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+        }
+
+        .timeline-text {
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        /* Controversy Section */
+        .controversy {
+            background: var(--bg-secondary);
+        }
+
+        .controversy-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .controversy-card {
+            background: var(--bg-primary);
+            border-radius: 24px;
+            padding: 3rem;
+            border: 1px solid var(--border);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .controversy-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--gradient-1);
+        }
+
+        .controversy-card.criticism::before {
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+        }
+
+        .controversy-card.truth::before {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        }
+
+        .controversy-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .controversy-card.criticism .controversy-icon {
+            background: rgba(239, 68, 68, 0.15);
+            color: #ef4444;
+        }
+
+        .controversy-card.truth .controversy-icon {
+            background: rgba(16, 185, 129, 0.15);
+            color: #10b981;
+        }
+
+        .controversy-title {
+            font-family: var(--font-heading);
+            font-size: 1.75rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .controversy-text {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .controversy-list {
+            list-style: none;
+        }
+
+        .controversy-list li {
+            padding: 0.75rem 0;
+            padding-left: 2rem;
+            position: relative;
+            color: var(--text-muted);
+        }
+
+        .controversy-list li::before {
+            content: '\f00c';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+        }
+
+        /* Mission Section */
+        .mission {
+            background: var(--gradient-hero);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mission::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        .mission-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .mission h2 {
+            font-family: var(--font-heading);
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            font-weight: 900;
+            margin-bottom: 2rem;
+            color: white;
+        }
+
+        .mission-quote {
+            font-size: 1.5rem;
+            font-style: italic;
+            color: rgba(255,255,255,0.95);
+            line-height: 1.8;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: rgba(255,255,255,0.1);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .mission-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .mission-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.2);
+            text-align: center;
+        }
+
+        .mission-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .mission-card h3 {
+            font-family: var(--font-heading);
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            color: white;
+        }
+
+        .mission-card p {
+            color: rgba(255,255,255,0.85);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* Stats */
+        .impact-stats {
+            background: var(--bg-primary);
+            padding: 4rem 2rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .stat-number {
+            font-family: var(--font-heading);
+            font-size: 3rem;
+            font-weight: 900;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--bg-secondary);
+            padding: 3rem 2rem;
+            text-align: center;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer p {
+            color: var(--text-muted);
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .timeline::before {
+                left: 30px;
+            }
+            
+            .timeline-item:nth-child(odd) .timeline-content,
+            .timeline-item:nth-child(even) .timeline-content {
+                margin-left: 80px;
+                margin-right: 0;
+                padding-left: 2rem;
+                padding-right: 2rem;
+                text-align: left;
+            }
+            
+            .timeline-dot {
+                left: 30px;
+            }
+            
+            .controversy-grid,
+            .identity-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .mission-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .timeline-item:nth-child(odd) .timeline-content,
+            .timeline-item:nth-child(even) .timeline-content {
+                margin-left: 60px;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ✅ FIXED FOOTER LINKS - Hover & Click Working */
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.footer-link {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    position: relative;
+}
+
+.footer-link i {
+    transition: transform 0.3s ease;
+}
+
+.footer-link:hover {
+    color: var(--primary);
+    background: rgba(220, 38, 38, 0.1);
+    transform: translateY(-2px);
+}
+
+.footer-link:hover i {
+    transform: scale(1.1);
+}
+
+.footer-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: var(--gradient-1);
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.footer-link:hover::after {
+    width: 80%;
+}
+
+/* Mobile touch optimization */
+@media (hover: none) {
+    .footer-link:active {
+        color: var(--primary);
+        background: rgba(220, 38, 38, 0.15);
+    }
+}
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-arrow-left"></i> Back to Main Site
+            </a>
+            <a href="index.html#contact" target="_self" class="nav-back">
+                <i class="fas fa-envelope"></i>
+                Get In Touch
+            </a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="about-hero">
+        <div class="about-hero-content">
+            <div class="about-badge">
+                <i class="fas fa-fire"></i> The Untold Story
+            </div>
+            <h1>
+                Beyond The <span class="highlight">Success</span><br>
+                Behind The <span class="highlight">Struggles</span>
+            </h1>
+            <p>
+                This is not just another success story. This is a raw, unfiltered journey through 
+                poverty, rejection, criticism, and the relentless pursuit of a dream to provide 
+                free education to millions.
+            </p>
+        </div>
+        <div class="scroll-indicator">
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- ✅ IDENTITY SECTION - NOW AT TOP -->
+    <section class="identity">
+        <div class="container">
+            <div class="identity-grid">
+                <div class="identity-image fade-in">
+                    <img src="https://miro.medium.com/v2/resize:fit:750/format:webp/1*_XUaVCkBOkBrRuUApKO_-w.jpeg" 
+                         alt="Saad Hashmani" 
+                         onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 500%22><rect fill=%22%23dc2626%22 width=%22400%22 height=%22500%22/><text fill=%22white%22 x=%2250%%22 y=%2250%%22 font-size=%2280%22 text-anchor=%22middle%22 dy=%22.3em%22>SH</text></svg>'">
+                </div>
+                <div class="identity-content fade-in">
+                    <span class="section-badge">Who He Really Is</span>
+                    <h3>Not an Influencer. A Builder.</h3>
+                    <p>
+                        Saad Hashmani is often misunderstood as just another "motivational influencer" 
+                        or "course seller." But the truth is far different. He is a <strong>businessman 
+                        first</strong>, who built a multi-million dollar empire through retail cellphone 
+                        stores and real estate investments in the United States.
+                    </p>
+                    <p>
+                        Unlike influencers who monetize attention, Saad monetizes <strong>results</strong>. 
+                        His wealth comes from actual businesses, not from selling courses. TheHUniversity 
+                        and TradingPapa are <strong>passion projects</strong> funded by his business success, 
+                        not revenue generators.
+                    </p>
+                    <ul class="identity-list">
+                        <li>
+                            <i class="fas fa-building"></i>
+                            <div>
+                                <strong>Business Owner</strong><br>
+                                <small>Multi-million dollar retail and real estate empire</small>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-graduation-cap"></i>
+                            <div>
+                                <strong>Education Philanthropist</strong><br>
+                                <small>Investing personal wealth in free education</small>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-heart"></i>
+                            <div>
+                                <strong>Patriot</strong><br>
+                                <small>Returning earnings to Pakistan for national development</small>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-bullhorn"></i>
+                            <div>
+                                <strong>Motivational Speaker</strong><br>
+                                <small>Sharing real experiences, not fake guru advice</small>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Struggles Timeline -->
+    <section class="struggles">
+        <div class="container">
+            <div class="section-header fade-in">
+                <span class="section-badge">The Journey</span>
+                <h2 class="section-title">Years of Struggle & Resilience</h2>
+                <p class="section-subtitle">
+                    Every success story has chapters of pain. Here's what nobody talks about.
+                </p>
+            </div>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-year">1989</div>
+                        <h3 class="timeline-title">Born in Karachi</h3>
+                        <p class="timeline-text">
+                            Born into a lower middle-class family in Karachi, Pakistan. From the very beginning, 
+                            financial constraints shaped his worldview. While other children dreamed of toys, 
+                            he dreamed of opportunities his family couldn't afford.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-year">2007-2010</div>
+                        <h3 class="timeline-title">Engineering Dreams Deferred</h3>
+                        <p class="timeline-text">
+                            Enrolled in Mechanical Engineering with hopes of a stable career. But the 
+                            financial burden became unbearable. Watching his parents struggle to pay fees, 
+                            he made the hardest decision: dropping out to support his family.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-year">2010</div>
+                        <h3 class="timeline-title">America or Nothing</h3>
+                        <p class="timeline-text">
+                            With empty pockets but a heart full of dreams, he moved to the United States. 
+                            No safety net, no connections, no guarantee. Just a suitcase and an unshakeable 
+                            belief that things would be different.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-year">2010-2013</div>
+                        <h3 class="timeline-title">The Darkest Years</h3>
+                        <p class="timeline-text">
+                            Visa rejections. Financial crisis. Psychological pressure. Working multiple 
+                            low-paying jobs just to survive. Sleeping in cramped apartments. Eating the 
+                            cheapest food. Every day was a battle between giving up and pushing forward.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-year">2013-2015</div>
+                        <h3 class="timeline-title">First Breakthrough</h3>
+                        <p class="timeline-text">
+                            Started small retail cellphone business. 16-hour workdays. Learning everything 
+                            from scratch. Making mistakes. Losing money. Getting back up. The first taste 
+                            of success came, but it was built on years of invisible struggle.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-year">2015-2020</div>
+                        <h3 class="timeline-title">Building an Empire</h3>
+                        <p class="timeline-text">
+                            Expanded into real estate. Multi-million dollar ventures. But success brought 
+                            new challenges: criticism, accusations, people questioning his methods. The 
+                            same people who ignored him during struggle now scrutinized his success.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-year">2020-Present</div>
+                        <h3 class="timeline-title">Giving Back</h3>
+                        <p class="timeline-text">
+                            Founded TheHUniversity and TradingPapa. Not for profit, but for purpose. 
+                            Investing $100,000+ of his own money to provide free education. Facing 
+                            accusations of being a "scammer" while working tirelessly to prove his 
+                            mission is real.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Controversy Section -->
+    <section class="controversy">
+        <div class="container">
+            <div class="section-header fade-in">
+                <span class="section-badge">The Truth</span>
+                <h2 class="section-title">Criticism vs. Reality</h2>
+                <p class="section-subtitle">
+                    Success attracts both admiration and accusation. Here's what people say and what's real.
+                </p>
+            </div>
+
+            <div class="controversy-grid">
+                <!-- Criticism Card -->
+                <div class="controversy-card criticism fade-in">
+                    <div class="controversy-icon">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <h3 class="controversy-title">What Critics Say</h3>
+                    <p class="controversy-text">
+                        Online critics and competitors have labeled Saad as a "course seller scammer" and 
+                        questioned his motives. Common accusations include:
+                    </p>
+                    <ul class="controversy-list">
+                        <li>"He's just selling dreams, not real education"</li>
+                        <li>"Free courses are a trap to upsell later"</li>
+                        <li>"His success is exaggerated for marketing"</li>
+                        <li>"He's an influencer, not a real businessman"</li>
+                        <li>"The courses have no real value"</li>
+                    </ul>
+                </div>
+
+                <!-- Truth Card -->
+                <div class="controversy-card truth fade-in">
+                    <div class="controversy-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="controversy-title">The Reality</h3>
+                    <p class="controversy-text">
+                        Behind the accusations lies a different story backed by actions, not words:
+                    </p>
+                    <ul class="controversy-list">
+                        <li>100% free courses in Pakistan - no hidden charges, no upsells</li>
+                        <li>Personal investment of $100,000+ from his own earnings</li>
+                        <li>500,000+ students enrolled and learning</li>
+                        <li>Real businesses: Multi-million dollar retail and real estate empire</li>
+                        <li>Transparent partnerships with verified platforms</li>
+                        <li>Daily live sessions with actual millionaire mentors</li>
+                        <li>Success stories from students who changed their lives</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="mission-content fade-in" style="margin-top: 4rem;">
+                <div class="mission-quote">
+                    "I don't care what people say behind my back. I care about the student in Pakistan 
+                    who can't afford $500 courses. I care about the single mother who needs skills to 
+                    feed her children. Their success is my revenge against the critics."
+                    <br><br>
+                    <strong>— Saad Hashmani</strong>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section class="mission">
+        <div class="mission-content">
+            <span class="section-badge" style="background: rgba(255,255,255,0.2); color: white;">
+                The Mission
+            </span>
+            <h2>Why Free Education?</h2>
+            <div class="mission-quote">
+                "I remember what it felt like to not afford education. To watch opportunities slip away 
+                because of money. I made a promise to myself: if I ever succeed, I will make sure no 
+                one in my country faces the same barrier. Education should be a right, not a privilege 
+                for those who can pay."
+            </div>
+
+            <div class="mission-grid">
+                <div class="mission-card">
+                    <div class="mission-icon">🇵🇰</div>
+                    <h3>Give Back to Pakistan</h3>
+                    <p>
+                        After years of struggle in America, Saad's mission is to return the wealth 
+                        of knowledge to his homeland. Pakistan's declining economy needs skilled 
+                        individuals who can earn online and support their families.
+                    </p>
+                </div>
+                <div class="mission-card">
+                    <div class="mission-icon">🎓</div>
+                    <h3>Democratize Education</h3>
+                    <p>
+                        Breaking the monopoly of expensive courses. Making professional education 
+                        accessible to middle-class and lower-income individuals who have talent 
+                        but lack resources.
+                    </p>
+                </div>
+                <div class="mission-card">
+                    <div class="mission-icon">🌍</div>
+                    <h3>Global Mindset Freedom</h3>
+                    <p>
+                        Beyond Pakistan, the vision is global: empowering people worldwide with 
+                        skills to achieve financial independence. Free education is the first step 
+                        toward freeing minds from poverty mentality.
+                    </p>
+                </div>
+            </div>
+        </div>
+    <!-- Impact Stats -->
+<section class="impact-stats">
+    <div class="container">
+        <div class="stats-grid">
+            <div class="stat-item fade-in">
+                <span class="stat-number" data-target="500" data-suffix="K+">0</span>
+                <span class="stat-label">Students Impacted</span>
+            </div>
+            <div class="stat-item fade-in">
+                <span class="stat-number" data-target="100" data-suffix="K+">0</span>
+                <span class="stat-label">Dollars Invested</span>
+            </div>
+            <div class="stat-item fade-in">
+                <span class="stat-number" data-target="15" data-suffix="+">0</span>
+                <span class="stat-label">Countries Reached</span>
+            </div>
+            <div class="stat-item fade-in">
+                <span class="stat-number" data-target="15" data-suffix="+">0</span>
+                <span class="stat-label">Free Courses</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Footer -->
+<footer class="footer">
+    <p>&copy; 2026 Saad Hashmani. All rights reserved.</p>
+    <p style="margin-top: 0.5rem; font-size: 0.9rem;">
+        Built with passion for free education and mindset freedom
+    </p>
+    <div class="footer-links">
+        <a href="index.html" class="footer-link">
+            <i class="fas fa-home"></i> Main Site
+        </a>
+        <a href="https://thehuniversity.com" target="_blank" rel="noopener noreferrer" class="footer-link">
+            <i class="fas fa-graduation-cap"></i> TheHUniversity
+        </a>
+        <a href="https://tradingpapa.com" target="_blank" rel="noopener noreferrer" class="footer-link">
+            <i class="fas fa-chart-line"></i> TradingPapa
+        </a>
+        <a href="mailto:contact@saadhashmani.com" class="footer-link">
+            <i class="fas fa-envelope"></i> Contact
+        </a>
+    </div>
+</footer>
+
+    <script>
+        // Scroll Animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in, .timeline-item').forEach(el => {
+            observer.observe(el);
+        });
+// Counter Animation - FIXED VERSION
+const counters = document.querySelectorAll('[data-target]');
+
+const counterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const counter = entry.target;
+            const target = +counter.getAttribute('data-target');
+            const suffix = counter.getAttribute('data-suffix') || '';
+            const speed = 50;
+            const increment = Math.ceil(target / speed);
+            let current = 0;
+
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    counter.textContent = target + suffix;
+                    clearInterval(timer);
+                } else {
+                    counter.textContent = current + suffix;
+                }
+            }, 20);
+            
+            counterObserver.unobserve(counter);
+        }
+    });
+}, { threshold: 0.5 });
+
+counters.forEach(counter => counterObserver.observe(counter));
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href !== '#' && !href.includes('http')) {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                }
+            });
+        });
+
+        console.log('%c🔥 Saad Hashmani - The Real Story', 'color: #dc2626; font-size: 24px; font-weight: bold;');
+        console.log('%cFrom struggle to success. From criticism to impact.', 'color: #f97316; font-size: 14px;');
+    </script>
+</body>
+</html>
